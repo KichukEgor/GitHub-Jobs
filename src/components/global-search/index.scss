@@ -1,0 +1,47 @@
+@import "src/styles/common";
+
+.global-search-container {
+  background: url("https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80");
+  border-radius: .8rem;
+  padding: 4rem;
+
+  .global-search {
+    margin: 4rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    input {
+      display: inline-block;
+      border: none;
+      outline: none;
+      transition: .8s;
+    }
+
+    &__query {
+      @extend %absolute-center;
+      height: 4rem;
+      width: 70rem;
+      padding: 1rem 12rem 1rem 1rem;
+    }
+
+    &__submit {
+      height: 3.8rem;
+      width: 14rem;
+      background: get-color($info,500);
+      color: $white;
+      border-radius: .4rem;
+      position: relative;
+      left: 27.8rem;
+
+      &:hover {
+        background: get-color($info,700);
+        color: $white;
+      }
+    }
+  }
+}
+
+
+
