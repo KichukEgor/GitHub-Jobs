@@ -1,0 +1,26 @@
+@import "mixins";
+
+%absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+%regular-roboto {
+  @include get-font(Roboto, 400)
+}
+
+%bold-roboto {
+  @include get-font(Roboto, 700)
+}
+
+
+%regular-poppins {
+  @include get-font(Poppins, 400)
+}
+
+%bold-poppins {
+  @include get-font(Poppins, 700)
+}

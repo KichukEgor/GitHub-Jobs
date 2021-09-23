@@ -1,0 +1,16 @@
+@import "styles/_common.scss";
+
+*> {
+  @extend %regular-roboto;
+}
+
+body {
+  background: get-color($bg,100);
+}
+
+.App {
+  max-width: 1200px;
+  background: get-color($bg,100);
+  margin: 0 auto;
+}
+

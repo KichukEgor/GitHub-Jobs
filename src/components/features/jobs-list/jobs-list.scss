@@ -1,0 +1,61 @@
+@import "../../../styles/common";
+
+.jobs-list {
+  background: $white;
+  padding: 1.2rem;
+  margin: 3.2rem 0;
+  display: flex;
+  width: 100%;
+  color: get-color($info, 700);
+  box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  transition: .2s;
+
+  &:hover{
+    transform: scale(1, 1.1);
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.2);
+    color: get-color($primary, 700);
+  }
+
+  &__logo {
+    max-width: 9rem;
+    max-height: 9rem;
+    border-radius: .4rem;
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    padding: 1rem 0 1rem 1.6rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__company {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  &__title {
+  }
+
+  &__sub-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__type {
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: .1rem solid get-color($info,800);
+    border-radius: .4rem;
+    padding: .4rem;
+  }
+
+  &__location {
+    margin-right: 4rem;
+  }
+
+
+}
