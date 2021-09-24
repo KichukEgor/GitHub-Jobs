@@ -1,6 +1,7 @@
 import {api} from "../../core/api";
 
 export async function fetchJobsList() {
-    const {data} = await api.get('/jobs')
+    /*TODO*/
+    const {data} = await api.get('/jobs',  { params: { company: 'SweetRush' } })
     return data
 }

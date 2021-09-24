@@ -1,29 +1,23 @@
-import {FC} from 'react';
+import { FC } from "react"
 
-import { JobsList, LocationMenu, GlobalSearch } from '../../features';
+import { JobsList, GlobalSearch } from "../../features"
 
-import "./home-page.scss"
+import FilterMenu from "../../features/location-menu/FilterMenu"
+
+import "./HomePage.scss"
+
+const mainCssClass= 'home-page'
 
 const HomePage: FC = () => {
-    return (
-        <>
-            <GlobalSearch/>
-            <section>
-                <div className='search-box'>
-                    <input type="text"/>
-                </div>
-            </section>
-            <main>
-                <section>
-                    <JobsList/>
-                </section>
-                <aside>
-                    <LocationMenu/>
-                </aside>
-                <JobsList/>
-            </main>
-        </>
-    )
-};
+  return (
+    <>
+      <GlobalSearch />
+      <main className={`${mainCssClass}__main`}>
+        <FilterMenu />
+        <JobsList />
+      </main>
+    </>
+  )
+}
 
-export default HomePage;
+export default HomePage

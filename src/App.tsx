@@ -22,13 +22,11 @@ const App: FC = () => {
         <BrowserRouter>
             <div className="App">
                 <Header/>
-                <main>
                     <Switch>
                         <Route exact path={INDEX_ROUTE} component={HomePage}/>
                         <Route exact path={JOB_DESCRIPTION_ID_ROUTE} component={JobDescriptionPage}/>
                         <Redirect to={INDEX_ROUTE}/>
                     </Switch>
-                </main>
                 <Footer/>
             </div>
         </BrowserRouter>

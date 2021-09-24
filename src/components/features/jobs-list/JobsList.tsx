@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {getJobsList} from "../../../store/jobs-list/actions";
 import {RootState} from "../../../store/rootReducer";
 
-import './jobs-list.scss'
+import './JobsList.scss'
 
 const mainCssClass = 'jobs-list'
 
