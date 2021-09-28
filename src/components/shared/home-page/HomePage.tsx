@@ -1,23 +1,19 @@
-import { FC } from "react"
+import { FC } from 'react'
+import { JobsList, GlobalSearch } from '../../features'
+import FilterMenu from '../../features/filter-menu/FilterMenu'
 
-import { JobsList, GlobalSearch } from "../../features"
+import './HomePage.scss'
 
-import FilterMenu from "../../features/location-menu/FilterMenu"
+const mainCssClass = 'home-page'
 
-import "./HomePage.scss"
-
-const mainCssClass= 'home-page'
-
-const HomePage: FC = () => {
-  return (
-    <>
-      <GlobalSearch />
-      <main className={`${mainCssClass}__main`}>
-        <FilterMenu />
-        <JobsList />
-      </main>
-    </>
-  )
-}
+const HomePage: FC = () => (
+  <>
+    <GlobalSearch />
+    <main className={`${mainCssClass}__main`}>
+      <FilterMenu />
+      <JobsList />
+    </main>
+  </>
+)
 
 export default HomePage

@@ -1,11 +1,14 @@
-import "./Header.scss"
+import './Header.scss'
 
 const Header = () => (
-    <header>
-        <div className='logo'>
-            <a className='logo__title' href="/"><strong>Github</strong> jobs </a>
-        </div>
-    </header>
-);
+  <header>
+    <div className="logo">
+      <a className="logo__title" href="/">
+        <strong>Github</strong>
+        jobs
+      </a>
+    </div>
+  </header>
+)
 
-export default Header;
+export default Header

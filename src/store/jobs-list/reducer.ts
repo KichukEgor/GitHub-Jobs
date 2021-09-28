@@ -1,34 +1,30 @@
-import {
-    createReducer
-} from '@reduxjs/toolkit'
-import {TJob} from '../../core/models/job';
+import { createReducer } from '@reduxjs/toolkit'
 
-import {filteredJobsList, setJobsList} from "./actions";
+import { filteredJobsList, setJobsList } from './actions'
+
+import { TJob } from '../../core/models/job'
 
 type TState = {
-    jobsList: TJob[], /*| null*/ /*TODO null*/
-    filteredJobsList: TJob[],
-    searchValue: string
+  jobsList: TJob[] | null;
+  filteredJobsList: TJob[];
+  searchValue: string;
 }
-/*TODO Object is possibly 'null'*/
-const initialState: TState = {
-    jobsList: [], /* => null*/
-    filteredJobsList: [],
-    searchValue: ''
-};
 
-export const jobsListReducer = createReducer(
-    initialState,
-    (builder) => {
-        builder
-            .addCase(setJobsList, (state, {payload}) => {
-                state.jobsList = payload
-                state.filteredJobsList = payload
-            })
-            .addCase(filteredJobsList, (state, payload) => {
-                // @ts-ignore
-                state.filteredJobsList.filter(item.company === payload)
-            })
-            .addDefaultCase((state, action) => {
-            })
+const initialState: TState = {
+  jobsList: null,
+  filteredJobsList: [],
+  searchValue: ''
+}
+
+export const jobsListReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(setJobsList, (state, { payload }) => {
+      state.jobsList = payload
+      state.filteredJobsList = payload
     })
+    .addCase(filteredJobsList, (state, payload) => {
+      // @ts-ignore
+      state.filteredJobsList.filter((item) => item.company === payload)
+    })
+    .addDefaultCase((state, action) => {})
+})

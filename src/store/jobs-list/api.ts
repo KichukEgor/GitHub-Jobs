@@ -1,7 +1,6 @@
-import {api} from "../../core/api";
+import { api } from '../../core/api/api'
 
 export async function fetchJobsList() {
-    /*TODO*/
-    const {data} = await api.get('/jobs',  { params: { company: 'SweetRush' } })
-    return data
+  const { data } = await api.get('/jobs')
+  return data
 }
