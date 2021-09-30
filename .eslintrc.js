@@ -50,6 +50,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-empty-function': 'off'
+    '@typescript-eslint/no-empty-function': 'off',
+    'arrow-body-style': ['error', 'as-needed']
   }
 }

@@ -2,5 +2,6 @@
   &__main {
     display: grid;
     grid-template-columns: 2fr 5fr;
+    transition: .4s;
   }
 }

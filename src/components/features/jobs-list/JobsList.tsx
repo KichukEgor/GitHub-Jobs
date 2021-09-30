@@ -11,25 +11,21 @@ const mainCssClass = 'jobs-list'
 
 const JobsList = () => {
   const dispatch = useDispatch()
-
   useEffect(() => {
     dispatch(getJobsList())
   }, [dispatch])
 
   const { jobsList } = useSelector((state: RootState) => state.jobsList)
-
   const jobsShortDescribe = jobsList?.map(
     ({
-      // eslint-disable-next-line camelcase
-      id, type, created_at, company, location, title, company_logo
+      id, type, created_at: createdAt, company, location, title, company_logo: companyLogo
     }) => (
       <Link key={id} to={`/jobs/${id}`}>
         <li className={`${mainCssClass}`}>
           <div>
             <img
               className={`${mainCssClass}__logo`}
-              /* eslint-disable-next-line camelcase */
-              src={company_logo}
+              src={companyLogo}
               alt={title}
             />
           </div>
@@ -41,8 +37,7 @@ const JobsList = () => {
               <p>
                 <span className={`${mainCssClass}__location`}>{location}</span>
                 <span className={`${mainCssClass}__created-at`}>
-                  {/* eslint-disable-next-line camelcase */}
-                  {created_at}
+                  {createdAt}
                 </span>
               </p>
             </div>

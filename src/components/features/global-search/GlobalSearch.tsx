@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 
 import { api } from '../../../core/api/api'
 
+import { setJobsList } from '../../../store/jobs-list/actions'
+
 import './GlobalSearch.scss'
 
 const mainCssClass = 'global-search'
@@ -10,12 +12,11 @@ const mainCssClass = 'global-search'
 const GlobalSearch: FC = () => {
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState('')
-  const [results, setResults] = useState([])
 
-  /* const getInfo = async () => {
-    const { data } = await api.get('/jobs')
-  } */
-
+  const getInfo = async () => {
+    const { data: { jobs } } = await api.get(`/jobs?description=${searchValue}`)
+    dispatch(setJobsList(jobs))
+  }
   return (
     <form action="" className={`${mainCssClass}`}>
       <input
@@ -27,12 +28,10 @@ const GlobalSearch: FC = () => {
       />
       <input
         className={`${mainCssClass}__submit`}
-        /* onClick={getInfo} */
-        type="submit"
+        onClick={getInfo}
+        value="Submit"
+        type="button"
       />
-      <ul>
-        <li>{results}</li>
-      </ul>
     </form>
   )
 }
