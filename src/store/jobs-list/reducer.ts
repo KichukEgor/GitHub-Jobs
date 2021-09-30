@@ -5,11 +5,15 @@ import { setJobsList } from './actions'
 import { TJob } from '../../core/models/job'
 
 type TState = {
-  jobsList: TJob[] | null
+  jobsList: null | TJob[],
+  totalJobsCount: null | number,
+  pageSize: number
 }
 
 const initialState: TState = {
-  jobsList: null
+  jobsList: null,
+  totalJobsCount: null,
+  pageSize: 5
 }
 
 export const jobsListReducer = createReducer(initialState, (builder) => {

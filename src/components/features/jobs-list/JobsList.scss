@@ -9,6 +9,7 @@
   color: get-color($info, 700);
   box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.05);
   border-radius: 4px;
+  transition: .5s;
 
   &:hover{
     transform: scale(1, 1.1);

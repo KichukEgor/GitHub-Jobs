@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { logger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import { rootReducer } from './rootReducer'
 
 export const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: [sagaMiddleware]
+  middleware: [sagaMiddleware, logger]
+  /* TODO */
+  /* process.env.NODE_ENV === 'development' && middleware.push(logger) */
 })
 
 export type RootState = ReturnType<typeof store.getState>
