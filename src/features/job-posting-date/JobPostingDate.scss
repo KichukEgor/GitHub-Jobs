@@ -1,0 +1,10 @@
+@import "src/common/styles/common";
+
+.job-posting-date {
+  color: get-color($text,300);
+
+  &__icon {
+    font-size: 1.4rem;
+    margin: 0 .8rem;
+  }
+}

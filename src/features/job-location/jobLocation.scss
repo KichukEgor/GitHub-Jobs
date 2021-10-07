@@ -1,0 +1,14 @@
+@import "./src/common/styles/common";
+
+.job-location {
+  color: get-color($text, 300);
+  text-align: center;
+
+  &__icon{
+    font-size: 1.4rem;
+  }
+
+  &__title{
+    margin-left: 0.8rem;
+  }
+}

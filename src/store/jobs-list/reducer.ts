@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit'
 
-import { setJobsList } from './actions'
+import { setJobsCount, setJobsList } from './actions'
 
-import { TJob } from '../../core/models/job'
+import { TJob } from '../../common/models/job'
 
 type TState = {
   jobsList: null | TJob[],
@@ -21,5 +21,7 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
     .addCase(setJobsList, (state, { payload }) => {
       state.jobsList = payload
     })
-    .addDefaultCase((state, action) => {})
+    .addCase(setJobsCount, (state, { payload }) => {
+      state.totalJobsCount = payload
+    })
 })

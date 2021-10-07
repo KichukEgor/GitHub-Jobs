@@ -1,0 +1,47 @@
+@import "../../common/styles/common";
+
+.jobs-list {
+  background: $white;
+  padding: 1.2rem;
+  margin-bottom: 3.2rem;
+  display: flex;
+  width: 100%;
+  color: get-color($info, 700);
+  box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  transition: .5s;
+
+  &:hover{
+    transform: scale(1, 1.05);
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.2);
+
+    .jobs-list__title{
+      color: get-color($primary, 700);
+    }
+  }
+
+  &__logo {
+    max-width: 9rem;
+    max-height: 9rem;
+    border-radius: .4rem;
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    padding: 1rem 0 1rem 1.6rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__company {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  &__sub-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}

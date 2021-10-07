@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 
 import { store } from './store/store'
-import './server/server'
+import './api/server'
 
 import App from './App'
 

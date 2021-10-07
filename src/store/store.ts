@@ -7,8 +7,6 @@ export const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
   reducer: rootReducer,
   middleware: [sagaMiddleware, logger]
-  /* TODO */
-  /* process.env.NODE_ENV === 'development' && middleware.push(logger) */
 })
 
 export type RootState = ReturnType<typeof store.getState>
