@@ -1,7 +1,59 @@
+/* import {
+  Response,
+  Server,
+  JSONAPISerializer,
+  createServer,
+  Model,
+  belongsTo,
+  hasMany,
+  Factory,
+  Registry
+} from 'miragejs'
+import Schema from 'miragejs/orm/schema';
+import { jobsList } from './mocks'
+
+const JobModel = Model.extend({
+  attr: 'text',
+})
+
+const JobFactory = Factory.extend({
+  attr: 'text',
+})
+
+declare const schema: Schema<
+  Registry<{ foo: typeof JobModel }, { foo: typeof JobFactory }>
+>
+
+createServer({
+models: {
+job: Model.extend({
+  id: 'text',
+  description: 'text'
+})
+},
+  routes() {
+    this.get('/jobs', (schema: Schema<
+        Registry<{ job: typeof JobModel }, { job: typeof JobFactory }>
+        >, request) => {
+      const job = this.schema.find('job', request.params.id);
+      /!* if (request.queryParams.description) {
+        const searchedJob = jobs.find((item: { id: string }) => item.id === request.queryParams.id)
+        return searchedJob
+      } *!/
+      return job
+    })
+    this.get('jobs/:id', (schema, request) => {
+      const job = this.schema.find('job', request.params.id)
+      return job ?? new Response(404)
+    })
+  },
+  seeds(server) {
+    jobsList.forEach((item) => server.create('job', item))
+  }
+}) */
 import { createServer, Model } from 'miragejs'
 
 import { jobsList } from './mocks'
-/* Property 'jobs' does not exist on type 'Schema { job: ModelDefinition{}>; }, AnyFactories>> */
 
 createServer({
   models: {

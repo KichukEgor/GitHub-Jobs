@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom'
+
 const BackLink = () => (
-  <div>
+  <Link to="/">
     <i className="fas fa-long-arrow-alt-left" />
-  </div>
+  </Link>
 )
 
 export default BackLink

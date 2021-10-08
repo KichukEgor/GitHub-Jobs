@@ -1,9 +1,10 @@
 @import "src/common/styles/common";
 
 .job-type {
+  color: get-color($info, 700);
   font-size: 1.2rem;
   font-weight: 700;
-  border: .1rem solid get-color($info, 800);
+  border: .1rem solid get-color($info, 700);
   border-radius: .4rem;
   padding: .4rem;
 }

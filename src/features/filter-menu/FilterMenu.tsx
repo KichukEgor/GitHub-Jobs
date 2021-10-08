@@ -38,7 +38,7 @@ const FilterMenu = () => (
       placeholder="City, state, zip code or country"
     />
     <ul>
-      {locationInputData.map(({ name, value, type }, index) => (
+      {locationInputData.map(({ name, value, type }) => (
         <li key={value}>
           <input
             name={name}

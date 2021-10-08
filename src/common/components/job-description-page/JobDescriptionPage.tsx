@@ -2,16 +2,14 @@ import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import { JobLocation, JobPostingDate, JobTypeOfEmployees } from '../../../features'
+
 import { getJobDescription } from '../../../store/job-description/actions'
 import { RootState } from '../../../store/rootReducer'
 
 import { TQueryParams } from '../../models/queryParams'
 
-import JobTypeOfEmployees from '../../../features/job-type-of-employees/JobTypeOfEmployees'
-
 import './JobDescriptionPage.scss'
-import JobLocation from '../../../features/job-location/jobLocation'
-import JobPostingDate from '../../../features/job-posting-date/JobPostingDate'
 
 const mainCssClass = 'description-page'
 
