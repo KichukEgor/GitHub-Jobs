@@ -1,19 +1,21 @@
 import { createReducer } from '@reduxjs/toolkit'
 
-import { setJobsCount, setJobsList } from './actions'
+import { setCurrentPage, setJobsCount, setJobsList } from './actions'
 
 import { TJob } from '../../common/models/job'
 
 type TState = {
   jobsList: null | TJob[],
-  totalJobsCount: null | number,
-  pageSize: number
+  totalJobsCount: number,
+  pageSize: number,
+  currentPage: number
 }
 
 const initialState: TState = {
   jobsList: null,
-  totalJobsCount: null,
-  pageSize: 5
+  totalJobsCount: 0,
+  pageSize: 5,
+  currentPage: 1
 }
 
 export const jobsListReducer = createReducer(initialState, (builder) => {
@@ -23,5 +25,8 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setJobsCount, (state, { payload }) => {
       state.totalJobsCount = payload
+    })
+    .addCase(setCurrentPage, (state, { payload }) => {
+      state.currentPage = payload
     })
 })

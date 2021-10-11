@@ -1,7 +1,6 @@
 import { api } from '../api/api'
-import { TQueryParams } from '../common/models/queryParams'
 
-export async function fetchJobDescription(payload: TQueryParams) {
-  const { data } = await api.get('/jobs', { params: payload })
+export async function fetchJobDescription(payload: string) {
+  const { data } = await api.get(`/jobs/${payload}`)
   return data.job
 }

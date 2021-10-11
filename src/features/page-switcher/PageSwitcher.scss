@@ -1,0 +1,11 @@
+@import "src/common/styles/common";
+
+.page-switcher {
+  &__item {
+    font-size: 2rem;
+
+    &_active {
+      font-size: 3rem;
+    }
+  }
+}

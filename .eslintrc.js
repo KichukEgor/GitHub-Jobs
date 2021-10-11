@@ -51,6 +51,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    'react/prop-types': 'off',
     'arrow-body-style': ['error', 'as-needed']
   }
 }

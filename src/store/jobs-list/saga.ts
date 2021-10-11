@@ -8,14 +8,14 @@ import { TQueryParams } from '../../common/models/queryParams'
 
 type TDataPayload = {
   jobs: TJob[]
-  totalCount: number
+  jobsCount: number
 }
 
 function* getJobsListSaga({ payload }: PayloadAction<TQueryParams>) {
   try {
     const data: TDataPayload = yield fetchJobsList(payload)
     yield put(setJobsList(data.jobs))
-    yield put(setJobsCount(data.totalCount))
+    yield put(setJobsCount(data.jobsCount))
   } catch (error) {
     console.error(error)
   }

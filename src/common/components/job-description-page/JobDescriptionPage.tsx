@@ -7,19 +7,17 @@ import { JobLocation, JobPostingDate, JobTypeOfEmployees } from '../../../featur
 import { getJobDescription } from '../../../store/job-description/actions'
 import { RootState } from '../../../store/rootReducer'
 
-import { TQueryParams } from '../../models/queryParams'
-
 import './JobDescriptionPage.scss'
 
 const mainCssClass = 'description-page'
 
 const JobDescriptionPage: FC = () => {
   const dispatch = useDispatch()
-  const jobId: TQueryParams = useParams()
-
+  const { id } : {id:string} = useParams()
+  console.log(typeof id)
   useEffect(() => {
-    dispatch(getJobDescription(jobId))
-  }, [dispatch, jobId])
+    dispatch(getJobDescription(id))
+  }, [dispatch, id])
 
   const { job } = useSelector((state: RootState) => state.jobDetails)
   /* ЭТО ПРОСТО ПРИМЕР РАБОТЫ С XML */
