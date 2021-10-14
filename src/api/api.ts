@@ -8,3 +8,8 @@ export const api = axios.create({
   },
   timeout: 10000000
 })
+
+export async function fetchJobDescription(payload: string) {
+  const { data } = await api.get(`/jobs/${payload}`)
+  return data.job
+}

@@ -10,7 +10,7 @@ const mainCssClass = 'global-search'
 const GlobalSearch: FC = () => {
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState<string>('')
-
+  // TODO page limit должны браться из стора
   const getInfo = () => dispatch(getJobsList({ description: searchValue }))
 
   return (

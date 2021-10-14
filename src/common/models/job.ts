@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 export type TJob = {
   id?: string;
   type?: string;
@@ -12,3 +11,5 @@ export type TJob = {
   how_to_apply?: string;
   company_logo?: string;
 }
+
+// todo partial

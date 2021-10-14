@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom'
 import { getJobsList } from '../../store/jobs-list/actions'
 import { RootState } from '../../store/rootReducer'
 
-/* TODO импорт из одного файла */
-import JobLocation from '../job-location/jobLocation'
-import JobPostingDate from '../job-posting-date/JobPostingDate'
-import JobTypeOfEmployees from '../job-type-of-employees/JobTypeOfEmployees'
+import JobLocation from '../../common/components/job-location/jobLocation'
+import JobPostingDate from '../../common/components/job-posting-date/JobPostingDate'
+import JobTypeOfEmployees from '../../common/components/job-type-of-employees/JobTypeOfEmployees'
 
 import PageSwitcher from '../page-switcher/PageSwitcher'
 
@@ -17,27 +16,25 @@ import './JobsList.scss'
 const mainCssClass = 'jobs-list'
 
 const JobsList = () => {
+  const {
+    jobsList, totalJobsCount, pageSize, currentPage
+  } = useSelector((state: RootState) => state.jobsList)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getJobsList())
-  }, [dispatch])
-
-  const { jobsList } = useSelector((state: RootState) => state.jobsList)
-  const { totalJobsCount } = useSelector((state: RootState) => state.jobsList)
-  const { pageSize } = useSelector((state: RootState) => state.jobsList)
-  const { currentPage } = useSelector((state: RootState) => state.jobsList)
+    dispatch(getJobsList({ page: currentPage, limit: pageSize }))
+  }, [currentPage, pageSize, dispatch])
 
   return (
-    <>
-      <PageSwitcher lobsCount={totalJobsCount} pageSize={pageSize} currentPage={currentPage} />
-      <ul>
+    <section>
+      <ul className={mainCssClass}>
         {
           jobsList?.map(
             ({
               id, type, created_at: createdAt, company, location, title, company_logo: companyLogo
             }) => (
               <Link key={id} to={`/${id}`}>
-                <li className={`${mainCssClass}`}>
+                <li className={`${mainCssClass}__item`}>
                   <div>
                     <img
                       className={`${mainCssClass}__logo`}
@@ -62,7 +59,9 @@ const JobsList = () => {
           )
         }
       </ul>
-    </>
+      { totalJobsCount > pageSize
+        && <PageSwitcher lobsCount={totalJobsCount} pageSize={pageSize} currentPage={currentPage} />}
+    </section>
   )
 }
 

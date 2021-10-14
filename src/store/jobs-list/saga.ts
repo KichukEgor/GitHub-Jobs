@@ -1,6 +1,8 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, select, takeEvery } from 'redux-saga/effects'
 import { PayloadAction } from '@reduxjs/toolkit'
-import { getJobsList, setJobsCount, setJobsList } from './actions'
+import {
+  getJobsList, setCurrentQueryParams, setJobsCount, setJobsList
+} from './actions'
 
 import { fetchJobsList } from '../../services/fetchJobsList'
 import { TJob } from '../../common/models/job'
@@ -12,10 +14,16 @@ type TDataPayload = {
 }
 
 function* getJobsListSaga({ payload }: PayloadAction<TQueryParams>) {
+  console.log('SAGA getJobsListSaga', payload)
+  // TODO
+  // @ts-ignore
+  const state = yield select()
+  console.log('state', state)
   try {
-    const data: TDataPayload = yield fetchJobsList(payload)
-    yield put(setJobsList(data.jobs))
-    yield put(setJobsCount(data.jobsCount))
+    yield put(setCurrentQueryParams(payload))
+    const { jobs, jobsCount }: TDataPayload = yield fetchJobsList(state.jobsList.currentQueryParams)
+    yield put(setJobsList(jobs))
+    yield put(setJobsCount(jobsCount))
   } catch (error) {
     console.error(error)
   }

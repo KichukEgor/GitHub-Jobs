@@ -3,8 +3,8 @@ import {
   Switch, BrowserRouter, Route, Redirect
 } from 'react-router-dom'
 
-import JobDescriptionPage from './common/components/job-description-page/JobDescriptionPage'
-import HomePage from './common/components/home-page/HomePage'
+import JobDescriptionPage from './features/job-description-page/JobDescriptionPage'
+import HomePage from './features/home-page/HomePage'
 import { Footer, Header } from './common/components'
 import { rootSaga } from './store/rootSaga'
 import { sagaMiddleware } from './store/store'

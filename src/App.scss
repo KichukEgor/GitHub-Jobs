@@ -10,6 +10,9 @@ body {
 
 .App {
   max-width: 1200px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
   background: get-color($bg,100);
   margin: 0 auto;
 }

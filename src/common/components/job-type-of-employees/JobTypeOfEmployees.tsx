@@ -1,4 +1,4 @@
-import { TJob } from '../../common/models/job'
+import { TJob } from '../../models/job'
 
 import './JobTypeOfEmployees.scss'
 

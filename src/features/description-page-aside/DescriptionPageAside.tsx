@@ -1,10 +1,12 @@
-import BackLink from '../back-link/BackLink'
+import BackButton from '../../common/components/back-button/BackButton'
 
 import './DescriptionPageAside.scss'
 
+const mainClassCss = 'description-page-aside'
+
 const DescriptionPageAside = () => (
-  <>
-    <BackLink />
+  <aside className={mainClassCss}>
+    <BackButton />
     <h1>HOW TO APPLY</h1>
     <p>
       Please email a copy of your resume and online portfolio to
@@ -13,7 +15,7 @@ const DescriptionPageAside = () => (
       & CC
       <a href="/eric@kasisto.com">eric@kasisto.com</a>
     </p>
-  </>
+  </aside>
 )
 
 export default DescriptionPageAside

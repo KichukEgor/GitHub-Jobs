@@ -1,11 +1,27 @@
 @import "src/common/styles/common";
 
 .page-switcher {
+  display: flex;
+  justify-content: end;
+
   &__item {
-    font-size: 2rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    font-size: 1.2rem;
+    border: .1rem solid get-color($bg, 300);
+    background: inherit;
+    border-radius: .4rem;
+    margin-left: 1rem;
+
+    &:hover {
+      border-color: #1E86FF;
+      color: #1E86FF;
+    }
 
     &_active {
-      font-size: 3rem;
+      border: .1rem solid #1E86FF;
+      color: $white;
+      background: #1E86FF
     }
   }
 }

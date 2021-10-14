@@ -1,13 +1,15 @@
 import './Header.scss'
 
+const mainClassCss = 'logo'
+
 const Header = () => (
-  <header>
-    <div className="logo">
-      <a className="logo__title" href="/">
-        <strong>Github</strong>
-        jobs
-      </a>
-    </div>
+  <header className={mainClassCss}>
+    <a className={`${mainClassCss}__title`} href="/">
+      <strong>
+        Github
+      </strong>
+      jobs
+    </a>
   </header>
 )
 

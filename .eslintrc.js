@@ -22,7 +22,14 @@ module.exports = {
     'airbnb/hooks'
   ],
   rules: {
+    camelcase: 'off',
     indent: ['error', 2],
+    semi: [
+      'error',
+      'never'
+    ],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'linebreak-style': ['error', 'windows'],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'max-len': ['error', {
@@ -40,10 +47,6 @@ module.exports = {
     'import/named': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     'no-unused-vars': 'off',
-    semi: [
-      'error',
-      'never'
-    ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-use-before-define': 'off',
     'comma-dangle': ['error', 'never'],
@@ -52,6 +55,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'react/prop-types': 'off',
-    'arrow-body-style': ['error', 'as-needed']
+    'arrow-body-style': ['error', 'as-needed'],
+    'implicit-arrow-linebreak': 'off'
   }
 }

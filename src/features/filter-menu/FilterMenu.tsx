@@ -28,7 +28,12 @@ const mainCssStyle = 'filter-menu'
 const FilterMenu = () => (
   <form action="" className={`${mainCssStyle}`}>
     <label htmlFor="checkTime">
-      <input type="checkbox" name="checkTime" id="checkTime" value="full-time" />
+      <input
+        type="checkbox"
+        name="checkTime"
+        id="checkTime"
+        value="full-time"
+      />
       full-time
     </label>
     <h1 className={`${mainCssStyle}__heading`}>LOCATION</h1>
