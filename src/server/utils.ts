@@ -1,18 +1,11 @@
 import { Response } from 'miragejs'
+import { HttpStatusCode } from '../common/enums/httpStatusCode'
 
 import { TJob } from '../common/models/job'
 
-// getResponseError
-export enum HttpStatusCode {
-  NOT_FOUND = 404,
-  BAD_REQUEST = 400,
-  OK = 200
-}
+export const getResponseError = (statusCode: HttpStatusCode, message: string) => new Response(statusCode, undefined, message)
 
-export const getResponseError = (statusCode: HttpStatusCode) => new Response(statusCode)
-
-// getPaginatedJobs
-export const getPaginatedJobs = (jobs: string | any[], queryParams: Record<string, string>) => {
+export const getPaginatedJobs = (jobs: TJob[], queryParams: Record<string, string>) => {
   const page = Number(queryParams.page)
   const limit = Number(queryParams.limit)
   const minIndex = (page - 1) * limit
@@ -20,13 +13,13 @@ export const getPaginatedJobs = (jobs: string | any[], queryParams: Record<strin
   return jobs.slice(minIndex, maxIndex)
 }
 
-// getFilteredJobs
 type TProps = {
   description?: string,
-  location?: string
+  location?: string,
+  type?: string
 }
 
-export const getFilteredJobs = (jobs:TJob[], { description, location }:TProps) => {
+export const getFilteredJobs = (jobs:TJob[], { description, location, type }:TProps) => {
   let filteredJobslist = jobs
   if (description) {
     filteredJobslist = filteredJobslist.filter(
@@ -36,6 +29,11 @@ export const getFilteredJobs = (jobs:TJob[], { description, location }:TProps) =
   if (location) {
     filteredJobslist = filteredJobslist.filter(
       (item) => item.location?.includes(location)
+    )
+  }
+  if (type) {
+    filteredJobslist = filteredJobslist.filter(
+      (item) => item.type?.includes(type)
     )
   }
   return filteredJobslist

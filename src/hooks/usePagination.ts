@@ -1,11 +1,5 @@
-type TProps={
-    lobsCount: number,
-    pageSize: number
-}
-
-export const usePagination = ({ lobsCount, pageSize }: TProps) => {
-  // todo кастомный хук
-  const pageCount: number = Math.ceil(lobsCount / pageSize)
+export const usePagination = (lobsCount: number, pageLimit: number) => {
+  const pageCount: number = Math.ceil(lobsCount / pageLimit)
   const arrayOfPageNum: number[] = []
   for (let i = 1; i <= pageCount; i += 1) {
     arrayOfPageNum.push(i)

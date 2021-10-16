@@ -1,8 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-import { fetchJobDescription } from '../../services/fetchJobDescription'
 import { getJobDescription, setJobDescription } from './actions'
+import { fetchJobDescription } from '../../api/api'
+
 import { TJob } from '../../common/models/job'
 
 function* getJobsDescriptionSaga({ payload }: PayloadAction<string>) {

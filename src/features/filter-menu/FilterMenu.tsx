@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import './FilterMenu.scss'
 
 const locationInputData = [
@@ -61,4 +62,4 @@ const FilterMenu = () => (
   </form>
 )
 
-export default FilterMenu
+export default memo(FilterMenu)

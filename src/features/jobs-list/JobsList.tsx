@@ -17,13 +17,13 @@ const mainCssClass = 'jobs-list'
 
 const JobsList = () => {
   const {
-    jobsList, totalJobsCount, pageSize, currentPage
+    jobsList, totalJobsCount, pageLimit, currentPage, description: searchdescr
   } = useSelector((state: RootState) => state.jobsList)
-
+  const isPageOne = pageLimit >= totalJobsCount
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getJobsList({ page: currentPage, limit: pageSize }))
-  }, [currentPage, pageSize, dispatch])
+    dispatch(getJobsList({ page: currentPage, limit: pageLimit, description: searchdescr }))
+  }, [searchdescr, currentPage, pageLimit, dispatch])
 
   return (
     <section>
@@ -59,8 +59,9 @@ const JobsList = () => {
           )
         }
       </ul>
-      { totalJobsCount > pageSize
-        && <PageSwitcher lobsCount={totalJobsCount} pageSize={pageSize} currentPage={currentPage} />}
+      {
+        !isPageOne && <PageSwitcher lobsCount={totalJobsCount} pageLimit={pageLimit} currentPage={currentPage} />
+      }
     </section>
   )
 }

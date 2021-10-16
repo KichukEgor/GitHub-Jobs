@@ -11,12 +11,12 @@ const mainCssClass = 'page-switcher'
 
 type TProps={
   lobsCount: number,
-  pageSize: number,
+  pageLimit: number,
   currentPage: number
 }
 
-const PageSwitcher: FC<TProps> = ({ lobsCount, pageSize, currentPage }) => {
-  const { arrayOfPageNum } = usePagination({ lobsCount, pageSize })
+const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
+  const { arrayOfPageNum } = usePagination(lobsCount, pageLimit)
   const dispatch = useDispatch()
   const switchPageHandler = (nextPage: number) => dispatch(setCurrentPage(nextPage))
 

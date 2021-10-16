@@ -5,9 +5,10 @@ import { jobsList } from './mocks'
 import {
   getFilteredJobs,
   getPaginatedJobs,
-  getResponseError,
-  HttpStatusCode
+  getResponseError
 } from './utils'
+
+import { HttpStatusCode } from '../common/enums/httpStatusCode'
 
 createServer({
   models: {
@@ -21,11 +22,11 @@ createServer({
       const totalJobsCount = filteredJobs.length
       console.log('filteredJobs', filteredJobs)
       const paginatedJobs = getPaginatedJobs(filteredJobs, queryParams)
-      return { jobs: paginatedJobs, jobsCount: totalJobsCount } ?? getResponseError(HttpStatusCode.NOT_FOUND)
+      return { jobs: paginatedJobs, jobsCount: totalJobsCount } ?? getResponseError(HttpStatusCode.NOT_FOUND, 'jobs not found')
     })
     this.get('jobs/:id', (schema, { params }) => {
       const job = this.schema.find('job', params.id)
-      return job ?? getResponseError(HttpStatusCode.NOT_FOUND)
+      return job ?? getResponseError(HttpStatusCode.NOT_FOUND, 'job not found')
     })
   },
   seeds(server) {

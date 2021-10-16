@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getJobDescription } from '../store/job-description/actions'
 
-type TId = {
+type TUrlParams = {
     id: string
 }
 
 const UseJobDescription = () => {
   const dispatch = useDispatch()
-  const { id }: TId = useParams()
+  const { id }: TUrlParams = useParams()
   useEffect(() => {
     dispatch(getJobDescription(id))
   }, [dispatch, id])

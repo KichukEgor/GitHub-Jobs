@@ -1,17 +1,18 @@
 import { FC, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { getJobsList } from '../../store/jobs-list/actions'
 
 import './GlobalSearch.scss'
+import { RootState } from '../../store/rootReducer'
 
 const mainCssClass = 'global-search'
 
 const GlobalSearch: FC = () => {
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState<string>('')
-  // TODO page limit должны браться из стора
-  const getInfo = () => dispatch(getJobsList({ description: searchValue }))
+  const { pageLimit } = useSelector((state: RootState) => state.jobsList)
+  const getInfo = () => dispatch(getJobsList({ description: searchValue, limit: pageLimit, page: 1 }))
 
   return (
     <form action="" className={`${mainCssClass}`}>
