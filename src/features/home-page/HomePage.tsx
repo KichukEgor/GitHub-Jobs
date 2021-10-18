@@ -1,15 +1,15 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import { JobsList, GlobalSearch } from '../index'
 import FilterMenu from '../filter-menu/FilterMenu'
 
-import useOnInitHomePage from '../../hooks/useOnInitHomePage'
+import useGetJobsList from '../../hooks/useGetJobsList'
 
 import './HomePage.scss'
 
 const mainCssClass = 'home-page'
 // todo loading
 const HomePage: FC = () => {
-  const error = useOnInitHomePage()
+  const error = useGetJobsList()
   const searchResult = () => {
     if (error) {
       return <h1>{error}</h1>

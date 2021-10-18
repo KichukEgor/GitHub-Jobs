@@ -1,8 +1,6 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getJobsList } from '../../store/jobs-list/actions'
 import { RootState } from '../../store/rootReducer'
 
 import JobLocation from '../../common/components/job-location/jobLocation'
@@ -17,13 +15,13 @@ const mainCssClass = 'jobs-list'
 
 const JobsList = () => {
   const {
-    jobsList, totalJobsCount, pageLimit, currentPage, description: searchdescr
+    jobsList,
+    totalJobsCount,
+    pageLimit,
+    currentPage
   } = useSelector((state: RootState) => state.jobsList)
+
   const isPageOne = pageLimit >= totalJobsCount
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getJobsList({ page: currentPage, limit: pageLimit, description: searchdescr }))
-  }, [searchdescr, currentPage, pageLimit, dispatch])
 
   return (
     <section>

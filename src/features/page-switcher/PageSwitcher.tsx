@@ -19,10 +19,14 @@ const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
   const { arrayOfPageNum } = usePagination(lobsCount, pageLimit)
   const dispatch = useDispatch()
   const switchPageHandler = (nextPage: number) => dispatch(setCurrentPage(nextPage))
-
   return (
     <div className={mainCssClass}>
-      <button type="button" onClick={() => switchPageHandler(currentPage - 1)} className={`${mainCssClass}__item`}>
+      <button
+        type="button"
+        disabled={currentPage === 1}
+        onClick={() => switchPageHandler(currentPage - 1)}
+        className={`${mainCssClass}__item`}
+      >
         <i className="fas fa-angle-left" />
       </button>
       { arrayOfPageNum.map((pageNum) => (
@@ -36,7 +40,12 @@ const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
           {pageNum}
         </button>
       )) }
-      <button type="button" onClick={() => switchPageHandler(currentPage + 1)} className={`${mainCssClass}__item`}>
+      <button
+        type="button"
+        disabled={currentPage === arrayOfPageNum.length}
+        onClick={() => switchPageHandler(currentPage + 1)}
+        className={`${mainCssClass}__item`}
+      >
         <i className="fas fa-angle-right" />
       </button>
     </div>

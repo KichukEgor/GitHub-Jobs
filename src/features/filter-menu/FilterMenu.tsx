@@ -1,4 +1,7 @@
 import { memo } from 'react'
+
+import CheckJobTypeEmployees from '../check-job-type-employees/check-job-type-employees'
+
 import './FilterMenu.scss'
 
 const locationInputData = [
@@ -28,15 +31,7 @@ const mainCssStyle = 'filter-menu'
 
 const FilterMenu = () => (
   <form action="" className={`${mainCssStyle}`}>
-    <label htmlFor="checkTime">
-      <input
-        type="checkbox"
-        name="checkTime"
-        id="checkTime"
-        value="full-time"
-      />
-      full-time
-    </label>
+    <CheckJobTypeEmployees />
     <h1 className={`${mainCssStyle}__heading`}>LOCATION</h1>
     <input
       className={`${mainCssStyle}__search`}

@@ -12,6 +12,9 @@
     background: inherit;
     border-radius: .4rem;
     margin-left: 1rem;
+    &[disabled] {
+      background: get-color($error, 200);
+    }
 
     &:hover {
       border-color: #1E86FF;

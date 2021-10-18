@@ -20,9 +20,13 @@ createServer({
       const jobs = schema.all('job').models
       const filteredJobs = getFilteredJobs(jobs, queryParams)
       const totalJobsCount = filteredJobs.length
-      console.log('filteredJobs', filteredJobs)
+      console.log(queryParams)
+      console.log(filteredJobs)
       const paginatedJobs = getPaginatedJobs(filteredJobs, queryParams)
-      return { jobs: paginatedJobs, jobsCount: totalJobsCount } ?? getResponseError(HttpStatusCode.NOT_FOUND, 'jobs not found')
+      if (totalJobsCount) {
+        return { jobs: paginatedJobs, jobsCount: totalJobsCount }
+      }
+      return getResponseError(HttpStatusCode.NOT_FOUND, 'jobs not found')
     })
     this.get('jobs/:id', (schema, { params }) => {
       const job = this.schema.find('job', params.id)

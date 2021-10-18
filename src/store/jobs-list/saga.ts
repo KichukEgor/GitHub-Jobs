@@ -15,14 +15,17 @@ type TDataPayload = {
 }
 
 function* getJobsListSaga({ payload }: PayloadAction<TQueryParams>) {
+  console.log('payloadSAGA_JOB_LIST', payload)
   try {
     const { jobs, jobsCount }: TDataPayload = yield fetchJobsList(payload)
+    console.log('payloadSAGA_JOBS FROM SERVER', jobs)
     yield put(setJobsList(jobs))
     yield put(setJobsCount(jobsCount))
   } catch (error) {
     /* TODO тип error */
-    /* yield put(setError(error.body)) */
-    console.error(error)
+    // @ts-ignore
+    yield put(setError(error.response.data))
+    console.error('error OBJECT IN SAGA', error)
   }
 }
 

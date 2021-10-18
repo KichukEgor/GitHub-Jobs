@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getJobsList } from '../../store/jobs-list/actions'
+import { setSearchDescriptionParam } from '../../store/jobs-list/actions'
 
 import './GlobalSearch.scss'
 import { RootState } from '../../store/rootReducer'
@@ -12,7 +12,7 @@ const GlobalSearch: FC = () => {
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState<string>('')
   const { pageLimit } = useSelector((state: RootState) => state.jobsList)
-  const getInfo = () => dispatch(getJobsList({ description: searchValue, limit: pageLimit, page: 1 }))
+  const getInfo = () => dispatch(setSearchDescriptionParam(searchValue))
 
   return (
     <form action="" className={`${mainCssClass}`}>
