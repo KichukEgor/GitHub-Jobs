@@ -1,0 +1,18 @@
+@import "src/common/styles/common";
+
+.sort-location {
+  margin-top: 2rem;
+  font-family: Poppins Roboto sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #334680;
+
+  &__label {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  &__radio-button {
+    margin: 0 1rem;
+  }
+}

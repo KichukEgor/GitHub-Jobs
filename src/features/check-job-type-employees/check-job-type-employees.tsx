@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux'
 
 import { setSearchTypeParam } from '../../store/jobs-list/actions'
 
+import './check-job-type-employees.scss'
+
+const mainCssClass = 'check-job-type'
+
 const CheckJobTypeEmployees = () => {
   const dispatch = useDispatch()
   const [jobType, setJobsType] = useState<boolean>(false)
@@ -14,8 +18,9 @@ const CheckJobTypeEmployees = () => {
     }
   }, [dispatch, jobType])
   return (
-    <label htmlFor="checkTime">
+    <label className={mainCssClass} htmlFor="checkTime">
       <input
+        className={`${mainCssClass}__input`}
         type="checkbox"
         name="Full Time"
         id="checkTime"

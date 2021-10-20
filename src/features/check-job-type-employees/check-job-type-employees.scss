@@ -1,0 +1,14 @@
+@import "src/common/styles/common";
+
+.check-job-type {
+  display: block;
+  padding-bottom: 3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__input {
+    margin: 0 1rem;
+  }
+}

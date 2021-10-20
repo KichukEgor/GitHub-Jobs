@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit'
 
 import {
   setCurrentPage,
-  setError,
+  setJobListError,
   setJobsCount,
   setJobsList,
   setSearchDescriptionParam,
@@ -57,7 +57,7 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
       state.type = payload
       state.currentPage = 1
     })
-    .addCase(setError, (state, { payload }) => {
+    .addCase(setJobListError, (state, { payload }) => {
       state.error = payload
     })
 })

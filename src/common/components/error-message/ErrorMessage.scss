@@ -1,0 +1,25 @@
+@import "src/common/styles/common";
+
+.error-message {
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: get-color($bg, 200);
+  color: get-color($text, 400);
+  border-radius: 3rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 6rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 1rem 0;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    padding: .6rem 0;
+  }
+}

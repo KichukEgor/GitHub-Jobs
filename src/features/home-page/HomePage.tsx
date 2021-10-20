@@ -1,21 +1,28 @@
 import { FC } from 'react'
+import { useSelector } from 'react-redux'
 import { JobsList, GlobalSearch } from '../index'
+
 import FilterMenu from '../filter-menu/FilterMenu'
+import ErrorMessage from '../../common/components/error-message/ErrorMessage'
 
 import useGetJobsList from '../../hooks/useGetJobsList'
+
+import { RootState } from '../../store/rootReducer'
 
 import './HomePage.scss'
 
 const mainCssClass = 'home-page'
 // todo loading
 const HomePage: FC = () => {
-  const error = useGetJobsList()
+  useGetJobsList()
+  const { error } = useSelector((state: RootState) => state.jobsList)
   const searchResult = () => {
     if (error) {
-      return <h1>{error}</h1>
+      return <ErrorMessage />
     }
     return <JobsList />
   }
+
   return (
     <>
       <GlobalSearch />

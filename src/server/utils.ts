@@ -3,7 +3,7 @@ import { HttpStatusCode } from '../common/enums/httpStatusCode'
 
 import { TJob } from '../common/models/job'
 
-export const getResponseError = (statusCode: HttpStatusCode, message: string) => new Response(statusCode, undefined, message)
+export const getResponseError = (statusCode: HttpStatusCode) => new Response(statusCode, undefined)
 
 export const getPaginatedJobs = (jobs: TJob[], queryParams: Record<string, string>) => {
   const page = Number(queryParams.page)

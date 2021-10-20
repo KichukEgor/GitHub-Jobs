@@ -1,0 +1,22 @@
+@import "src/common/styles/common";
+
+.location-filter {
+
+  &__title {
+    color: get-color($text, 600);
+    padding-bottom: 1.4rem;
+  }
+
+  &__search-input {
+    background: url("https://yangstore.net/wp-content/uploads/2019/07/earth-global-globe-international-map-planet-world-2-12510.png") no-repeat scroll 15px 15px;
+    background-color: get-color($bg, 300);
+    margin-bottom: 2.4rem;
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1.4rem 1rem 1.4rem 3rem;
+    background: $white;
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.15);
+    border-radius: .4rem;
+    outline: none;
+  }
+}

@@ -9,8 +9,7 @@ const useGetJobsList = () => {
     currentPage,
     description: searchedJobDescription,
     type: searchedJobType,
-    location: searchedJobLocation,
-    error
+    location: searchedJobLocation
   } = useSelector((state: RootState) => state.jobsList)
 
   const dispatch = useDispatch()
@@ -30,7 +29,6 @@ const useGetJobsList = () => {
     searchedJobType,
     searchedJobLocation
   ])
-  return error
 }
 
 export default useGetJobsList

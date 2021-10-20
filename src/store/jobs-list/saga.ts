@@ -1,7 +1,8 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import { PayloadAction } from '@reduxjs/toolkit'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import {
-  getJobsList, setError, setJobsCount, setJobsList
+  getJobsList, setJobListError, setJobsCount, setJobsList
 } from './actions'
 
 import { fetchJobsList } from '../../api/api'
@@ -15,22 +16,20 @@ type TDataPayload = {
 }
 
 function* getJobsListSaga({ payload }: PayloadAction<TQueryParams>) {
-  console.log('payloadSAGA_JOB_LIST', payload)
   try {
     const { jobs, jobsCount }: TDataPayload = yield fetchJobsList(payload)
-    console.log('payloadSAGA_JOBS FROM SERVER', jobs)
+    // TODO put -> put resolve
     yield put(setJobsList(jobs))
     yield put(setJobsCount(jobsCount))
   } catch (error) {
-    /* TODO тип error */
-    // @ts-ignore
-    yield put(setError(error.response.data))
-    console.error('error OBJECT IN SAGA', error)
+    // TODO в одну строку или в две?
+    if (axios.isAxiosError(error) && error.code === '404') yield put(setJobListError('Error type 404'))
+    yield put(setJobListError('Unknown Error'))
   }
 }
 
 function* jobsListSaga() {
-  yield takeEvery(getJobsList, getJobsListSaga)
+  yield takeLatest(getJobsList, getJobsListSaga)
 }
 
 export default jobsListSaga
