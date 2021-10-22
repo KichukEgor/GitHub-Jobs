@@ -1,47 +1,55 @@
-import { FC } from 'react'
+import { ChangeEventHandler, FC, useState } from 'react'
 
 import './SortLocation.scss'
+import { useDispatch } from 'react-redux'
+import RadioButton from '../radio-button/RadioButton'
+import { setSearchLocationParam } from '../../../store/jobs-list/actions'
 
 const locationInputData = [
   {
     name: 'city',
-    value: 'London',
-    type: 'radio'
+    value: 'London'
   },
   {
     name: 'city',
-    value: 'Amsterdam',
-    type: 'radio'
+    value: 'Amsterdam'
   },
   {
     name: 'city',
-    value: 'New York',
-    type: 'radio'
+    value: 'Schwerin'
   },
   {
     name: 'city',
-    value: 'Berlin',
-    type: 'radio'
+    value: 'Berlin'
   }
 ]
 
+type TProps={
+  searchValue: string
+  setSearchValue:(arg:string)=>void
+}
+
 const mainCssStyle = 'sort-location'
 
-const SortLocation:FC = () => (
-  <ul className={mainCssStyle}>
-    {locationInputData.map(({ name, value, type }) => (
-      <label key={value} className={`${mainCssStyle}__label`} htmlFor={value}>
-        <input
+const SortLocation:FC<TProps> = ({ searchValue, setSearchValue }) => {
+  const dispatch = useDispatch()
+  const handleChange = (value:string) => {
+    dispatch(setSearchLocationParam(value))
+    setSearchValue(value)
+  }
+  return (
+    <ul className={mainCssStyle}>
+      {locationInputData.map(({ name, value }) => (
+        <RadioButton
+          key={value}
           name={name}
-          id={value}
+          checked={searchValue === value}
           value={value}
-          type={type}
-          className={`${mainCssStyle}__radio-button`}
+          onClick={() => handleChange(value)}
         />
-        {value}
-      </label>
-    ))}
-  </ul>
-)
+      ))}
+    </ul>
+  )
+}
 
 export default SortLocation

@@ -1,22 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
-import { setSearchTypeParam } from '../../store/jobs-list/actions'
+import UseJobType from '../../hooks/useJobType'
 
 import './check-job-type-employees.scss'
 
 const mainCssClass = 'check-job-type'
 
 const CheckJobTypeEmployees = () => {
-  const dispatch = useDispatch()
   const [jobType, setJobsType] = useState<boolean>(false)
-  useEffect(() => {
-    if (jobType) {
-      dispatch(setSearchTypeParam('Full Time'))
-    } else {
-      dispatch(setSearchTypeParam(''))
-    }
-  }, [dispatch, jobType])
+  UseJobType(jobType)
+
   return (
     <label className={mainCssClass} htmlFor="checkTime">
       <input

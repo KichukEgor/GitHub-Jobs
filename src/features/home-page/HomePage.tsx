@@ -7,7 +7,7 @@ import ErrorMessage from '../../common/components/error-message/ErrorMessage'
 
 import useGetJobsList from '../../hooks/useGetJobsList'
 
-import { RootState } from '../../store/rootReducer'
+import { selectError } from '../../store/jobs-list/selectors'
 
 import './HomePage.scss'
 
@@ -15,14 +15,13 @@ const mainCssClass = 'home-page'
 // todo loading
 const HomePage: FC = () => {
   useGetJobsList()
-  const { error } = useSelector((state: RootState) => state.jobsList)
+  const error = useSelector(selectError)
   const searchResult = () => {
     if (error) {
       return <ErrorMessage />
     }
     return <JobsList />
   }
-
   return (
     <>
       <GlobalSearch />

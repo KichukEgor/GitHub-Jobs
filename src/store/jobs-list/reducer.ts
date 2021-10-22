@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 import {
+  getJobsList,
   setCurrentPage,
   setJobListError,
   setJobsCount,
@@ -36,6 +37,10 @@ const initialState: TState = {
 
 export const jobsListReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(getJobsList, (state, { payload }) => {
+      state.error = ''
+      state.currentPage = 1
+    })
     .addCase(setJobsList, (state, { payload }) => {
       state.jobsList = payload
     })
@@ -47,15 +52,12 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSearchDescriptionParam, (state, { payload }) => {
       state.description = payload
-      state.error = ''
     })
     .addCase(setSearchLocationParam, (state, { payload }) => {
       state.location = payload
-      state.currentPage = 1
     })
     .addCase(setSearchTypeParam, (state, { payload }) => {
       state.type = payload
-      state.currentPage = 1
     })
     .addCase(setJobListError, (state, { payload }) => {
       state.error = payload

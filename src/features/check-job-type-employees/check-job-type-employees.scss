@@ -1,8 +1,13 @@
 @import "src/common/styles/common";
 
 .check-job-type {
-  display: block;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 1.4rem;
   padding-bottom: 3rem;
+  color: #334680;
+  font-weight: 500;
 
   &:hover {
     cursor: pointer;

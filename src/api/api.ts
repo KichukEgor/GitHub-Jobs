@@ -11,7 +11,6 @@ export const api = axios.create({
 })
 
 export async function fetchJobsList(queryData: TGetJobsPayload) {
-  console.log('fetchJobsList queryData', queryData)
   const { data } = await api.get('/jobs', { params: queryData })
   return data
 }

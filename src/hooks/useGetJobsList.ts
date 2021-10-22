@@ -1,33 +1,33 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getJobsList } from '../store/jobs-list/actions'
-import { RootState } from '../store/rootReducer'
+import { selectJobsListParameters } from '../store/jobs-list/selectors'
 
 const useGetJobsList = () => {
   const {
     pageLimit,
     currentPage,
-    description: searchedJobDescription,
-    type: searchedJobType,
-    location: searchedJobLocation
-  } = useSelector((state: RootState) => state.jobsList)
+    description,
+    type,
+    location
+  } = useSelector(selectJobsListParameters)
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getJobsList({
       page: currentPage,
       limit: pageLimit,
-      description: searchedJobDescription,
-      type: searchedJobType,
-      location: searchedJobLocation
+      description,
+      type,
+      location
     }))
   }, [
     dispatch,
     currentPage,
     pageLimit,
-    searchedJobDescription,
-    searchedJobType,
-    searchedJobLocation
+    description,
+    type,
+    location
   ])
 }
 

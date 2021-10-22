@@ -1,0 +1,15 @@
+@import "src/common/styles/common";
+
+label.radio-button {
+  display: flex;
+  width: 100%;
+  font-weight: 500;
+  color: #334680;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+input.radio-button {
+    margin: 0 1rem;
+}
+

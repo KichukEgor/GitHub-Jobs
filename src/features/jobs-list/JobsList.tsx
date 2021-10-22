@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-import { RootState } from '../../store/rootReducer'
 
 import JobLocation from '../../common/components/job-location/jobLocation'
 import JobPostingDate from '../../common/components/job-posting-date/JobPostingDate'
 import JobTypeOfEmployees from '../../common/components/job-type-of-employees/JobTypeOfEmployees'
-
 import PageSwitcher from '../page-switcher/PageSwitcher'
+
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 import './JobsList.scss'
 
@@ -19,7 +17,7 @@ const JobsList = () => {
     totalJobsCount,
     pageLimit,
     currentPage
-  } = useSelector((state: RootState) => state.jobsList)
+  } = useAppSelector((state) => state.jobsList)
 
   const isPageOne = pageLimit >= totalJobsCount
 

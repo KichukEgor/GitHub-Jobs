@@ -1,15 +1,16 @@
-import { formatDistance } from 'date-fns'
+import getPastPeriod from './utils'
 import { TJob } from '../../models/job'
 
 import './JobPostingDate.scss'
 
 const mainCssClass = 'job-posting-date'
 
+// TODO спросить, стоит ли делать такого вида типизацию, или лучше использовать :string
+
 const JobPostingDate = ({ created_at }: TJob) => {
-  // todo вынести в утилиты. Вынес, но выглядит стремно
-  let postingDate = ''
+  let postingDate
   if (typeof created_at === 'string') {
-    postingDate = formatDistance(Date.parse(created_at), new Date(), { addSuffix: true })
+    postingDate = getPastPeriod(created_at)
   }
   return (
     <span className={`${mainCssClass}`}>

@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setCurrentPage } from '../../store/jobs-list/actions'
+import PageSwitcherButton from '../../common/components/page-switcher-button/PageSwitcherButton'
 
+import { setCurrentPage } from '../../store/jobs-list/actions'
 import { usePagination } from '../../hooks/usePagination'
 
 import './PageSwitcher.scss'
@@ -19,35 +20,27 @@ const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
   const { arrayOfPageNum } = usePagination(lobsCount, pageLimit)
   const dispatch = useDispatch()
   const switchPageHandler = (nextPage: number) => dispatch(setCurrentPage(nextPage))
+
   return (
     <div className={mainCssClass}>
-      <button
-        type="button"
+      <PageSwitcherButton
+        buttonContent={<i className="fas fa-angle-left" />}
         disabled={currentPage === 1}
         onClick={() => switchPageHandler(currentPage - 1)}
-        className={`${mainCssClass}__item`}
-      >
-        <i className="fas fa-angle-left" />
-      </button>
+      />
       { arrayOfPageNum.map((pageNum) => (
-        <button
+        <PageSwitcherButton
           key={pageNum}
-          type="button"
+          currentPage={currentPage}
+          buttonContent={pageNum}
           onClick={() => switchPageHandler(pageNum)}
-          // TODO ClassNames
-          className={currentPage === pageNum ? `${mainCssClass}__item ${mainCssClass}__item_active` : `${mainCssClass}__item`}
-        >
-          {pageNum}
-        </button>
+        />
       )) }
-      <button
-        type="button"
+      <PageSwitcherButton
+        buttonContent={<i className="fas fa-angle-right" />}
         disabled={currentPage === arrayOfPageNum.length}
         onClick={() => switchPageHandler(currentPage + 1)}
-        className={`${mainCssClass}__item`}
-      >
-        <i className="fas fa-angle-right" />
-      </button>
+      />
     </div>
   )
 }
