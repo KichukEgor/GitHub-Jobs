@@ -7,17 +7,15 @@ type TProps = {
   currentPage?: number
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
-  key?: number
 }
 
 const mainCssClass = 'page-switcher-button'
 
 const PageSwitcherButton = ({
-  buttonContent, onClick, disabled, currentPage, key
+  buttonContent, onClick, disabled, currentPage
 }:TProps) => (
   <button
     type="button"
-    key={key}
     disabled={disabled}
     onClick={onClick}
     className={currentPage === buttonContent ? `${mainCssClass}_active` : mainCssClass}

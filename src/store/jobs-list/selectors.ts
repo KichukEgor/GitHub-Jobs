@@ -26,6 +26,21 @@ export const selectJobsListParameters = createSelector(
   })
 )
 
+export const selectJobsListComponentParameters = createSelector(
+  selectState,
+  ({
+    jobsList,
+    totalJobsCount,
+    pageLimit,
+    currentPage
+  }) => ({
+    jobsList,
+    totalJobsCount,
+    pageLimit,
+    currentPage
+  })
+)
+
 export const selectTotalCount = createSelector(
   selectState,
   ({ totalJobsCount }) => totalJobsCount
@@ -53,10 +68,10 @@ export const selectDescription = createSelector(
 
 export const selectLocation = createSelector(
   selectState,
-  ({ description }) => description
+  ({ location }) => location
 )
 
 export const selectType = createSelector(
   selectState,
-  ({ description }) => description
+  ({ type }) => type
 )

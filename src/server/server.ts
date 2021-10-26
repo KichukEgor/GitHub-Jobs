@@ -1,9 +1,11 @@
 import { createServer, Model, Response } from 'miragejs'
 
+import { TJob } from '../../src/common/models/job'
+
 import { jobsList } from './mocks'
 
 import {
-  getFilteredJobs,
+  getFilteredJobs, getJobsModelsAttrs,
   getPaginatedJobs,
   getResponseError
 } from './utils'
@@ -17,7 +19,7 @@ createServer({
   routes() {
     this.namespace = 'api'
     this.get('/jobs', (schema, { queryParams }) => {
-      const jobs = schema.all('job').models
+      const jobs: TJob[] = getJobsModelsAttrs(schema.all('job').models)
       const filteredJobs = getFilteredJobs(jobs, queryParams)
       const totalJobsCount = filteredJobs.length
       const paginatedJobs = getPaginatedJobs(filteredJobs, queryParams)

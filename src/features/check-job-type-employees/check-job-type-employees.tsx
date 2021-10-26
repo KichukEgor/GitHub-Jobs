@@ -11,12 +11,12 @@ const CheckJobTypeEmployees = () => {
   UseJobType(jobType)
 
   return (
-    <label className={mainCssClass} htmlFor="checkTime">
+    <label className={mainCssClass} htmlFor="checkJobType">
       <input
         className={`${mainCssClass}__input`}
         type="checkbox"
         name="Full Time"
-        id="checkTime"
+        id="checkJobType"
         value="Full Time"
         onClick={() => setJobsType(!jobType)}
       />

@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import JobLocation from '../../common/components/job-location/jobLocation'
-import JobPostingDate from '../../common/components/job-posting-date/JobPostingDate'
-import JobTypeOfEmployees from '../../common/components/job-type-of-employees/JobTypeOfEmployees'
-import PageSwitcher from '../page-switcher/PageSwitcher'
+import PaginationMenu from '../../common/components/pagination-menu/PaginationMenu'
+import JobCard from '../job-card/JobCard'
 
-import { useAppSelector } from '../../hooks/useAppSelector'
+import { selectJobsListComponentParameters } from '../../store/jobs-list/selectors'
 
 import './JobsList.scss'
 
@@ -17,9 +15,9 @@ const JobsList = () => {
     totalJobsCount,
     pageLimit,
     currentPage
-  } = useAppSelector((state) => state.jobsList)
+  } = useSelector(selectJobsListComponentParameters)
 
-  const isPageOne = pageLimit >= totalJobsCount
+  const isPageOnlyOne = pageLimit >= totalJobsCount
 
   return (
     <section>
@@ -27,36 +25,24 @@ const JobsList = () => {
         {
           jobsList?.map(
             ({
-              id, type, created_at: createdAt, company, location, title, company_logo: companyLogo
+              id, type, created_at, company, location, title, company_logo
             }) => (
-              <Link key={id} to={`/${id}`}>
-                <li className={`${mainCssClass}__item`}>
-                  <div>
-                    <img
-                      className={`${mainCssClass}__logo`}
-                      src={companyLogo}
-                      alt={title}
-                    />
-                  </div>
-                  <div className={`${mainCssClass}__info`}>
-                    <h3 className={`${mainCssClass}__company`}>{company}</h3>
-                    <h2 className={`${mainCssClass}__title`}>{title}</h2>
-                    <div className={`${mainCssClass}__sub-info`}>
-                      <JobTypeOfEmployees type={type} />
-                      <p>
-                        <JobLocation location={location} />
-                        <JobPostingDate created_at={createdAt} />
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </Link>
+              <JobCard
+                key={id}
+                id={id}
+                companyLogo={company_logo}
+                title={title}
+                company={company}
+                type={type}
+                location={location}
+                createdAt={created_at}
+              />
             )
           )
         }
       </ul>
       {
-        !isPageOne && <PageSwitcher lobsCount={totalJobsCount} pageLimit={pageLimit} currentPage={currentPage} />
+        !isPageOnlyOne && <PaginationMenu lobsCount={totalJobsCount} pageLimit={pageLimit} currentPage={currentPage} />
       }
     </section>
   )

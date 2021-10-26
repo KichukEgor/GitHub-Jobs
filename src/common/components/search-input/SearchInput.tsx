@@ -1,4 +1,5 @@
 import { ChangeEventHandler, FC } from 'react'
+
 import './SearchInput.scss'
 
 type TSearchInput = {

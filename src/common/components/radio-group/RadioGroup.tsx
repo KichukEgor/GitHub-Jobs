@@ -1,9 +1,12 @@
-import { ChangeEventHandler, FC, useState } from 'react'
+import { FC } from 'react'
 
-import './SortLocation.scss'
 import { useDispatch } from 'react-redux'
+
 import RadioButton from '../radio-button/RadioButton'
+
 import { setSearchLocationParam } from '../../../store/jobs-list/actions'
+
+import './RadioGroup.scss'
 
 const locationInputData = [
   {
@@ -25,17 +28,15 @@ const locationInputData = [
 ]
 
 type TProps={
-  searchValue: string
-  setSearchValue:(arg:string)=>void
+  location: string
 }
 
-const mainCssStyle = 'sort-location'
+const mainCssStyle = 'radio-group'
 
-const SortLocation:FC<TProps> = ({ searchValue, setSearchValue }) => {
+const RadioGroup:FC<TProps> = ({ location }) => {
   const dispatch = useDispatch()
   const handleChange = (value:string) => {
     dispatch(setSearchLocationParam(value))
-    setSearchValue(value)
   }
   return (
     <ul className={mainCssStyle}>
@@ -43,7 +44,7 @@ const SortLocation:FC<TProps> = ({ searchValue, setSearchValue }) => {
         <RadioButton
           key={value}
           name={name}
-          checked={searchValue === value}
+          checked={location === value}
           value={value}
           onClick={() => handleChange(value)}
         />
@@ -52,4 +53,4 @@ const SortLocation:FC<TProps> = ({ searchValue, setSearchValue }) => {
   )
 }
 
-export default SortLocation
+export default RadioGroup

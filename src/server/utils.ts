@@ -1,9 +1,15 @@
-import { Response } from 'miragejs'
+import { Instantiate, Registry, Response } from 'miragejs'
+import { AnyFactories, ModelDefinition } from 'miragejs/-types'
 import { HttpStatusCode } from '../common/enums/httpStatusCode'
-
 import { TJob } from '../common/models/job'
 
 export const getResponseError = (statusCode: HttpStatusCode) => new Response(statusCode, undefined)
+
+export const getJobsModelsAttrs = (arg: Instantiate<Registry<{job: ModelDefinition<Record<string, unknown>>}, AnyFactories>, 'job'>[]) => {
+  const JobsModelsAttrs: TJob[] = []
+  arg.forEach((item) => JobsModelsAttrs.push(item.attrs as TJob))
+  return JobsModelsAttrs
+}
 
 export const getPaginatedJobs = (jobs: TJob[], queryParams: Record<string, string>) => {
   const page = Number(queryParams.page)
@@ -13,13 +19,7 @@ export const getPaginatedJobs = (jobs: TJob[], queryParams: Record<string, strin
   return jobs.slice(minIndex, maxIndex)
 }
 
-type TProps = {
-  description?: string,
-  location?: string,
-  type?: string
-}
-
-export const getFilteredJobs = (jobs:TJob[], { description, location, type }:TProps) => {
+export const getFilteredJobs = (jobs:TJob[], { description, location, type }:Record<string, string>) => {
   let filteredJobslist = jobs
   if (description) {
     filteredJobslist = filteredJobslist.filter(

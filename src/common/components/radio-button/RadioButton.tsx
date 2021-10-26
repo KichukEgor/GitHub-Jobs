@@ -19,6 +19,7 @@ const RadioButton:FC<TProps> = ({
       name={name}
       id={value}
       value={value}
+      // TODO warning checked -> defaultChecked
       checked={checked}
       type="radio"
       className={mainCssStyle}
