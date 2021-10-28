@@ -18,7 +18,7 @@ const GlobalSearch: FC = () => {
     <form action="" className={mainCssClass}>
       <SearchInput
         iconClassName="fas fa-suitcase"
-        addClassName={`${mainCssClass}__input`}
+        inputClassName={`${mainCssClass}__input`}
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Title, companies, expertise or benefits"

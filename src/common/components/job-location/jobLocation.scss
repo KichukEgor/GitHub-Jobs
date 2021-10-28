@@ -5,10 +5,12 @@
   text-align: center;
 
   &__icon{
+    display: inline-block;
     font-size: 1.4rem;
+    padding-right: .8rem;
   }
 
   &__title{
-    margin-left: 0.8rem;
+    margin-right: 0.8rem;
   }
 }

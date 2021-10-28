@@ -4,11 +4,6 @@ import { RootState } from '../store'
 
 const selectState = ({ jobsList }: RootState) => jobsList
 
-export const selectJobsList = createSelector(
-  selectState,
-  ({ jobsList }) => jobsList
-)
-
 export const selectJobsListParameters = createSelector(
   selectState,
   ({
@@ -41,11 +36,6 @@ export const selectJobsListComponentParameters = createSelector(
   })
 )
 
-export const selectTotalCount = createSelector(
-  selectState,
-  ({ totalJobsCount }) => totalJobsCount
-)
-
 export const selectError = createSelector(
   selectState,
   ({ error }) => error
@@ -56,14 +46,9 @@ export const selectPageLimit = createSelector(
   ({ pageLimit }) => pageLimit
 )
 
-export const selectCurrentPage = createSelector(
+export const selectIsLoading = createSelector(
   selectState,
-  ({ currentPage }) => currentPage
-)
-
-export const selectDescription = createSelector(
-  selectState,
-  ({ description }) => description
+  ({ isLoading }) => isLoading
 )
 
 export const selectLocation = createSelector(

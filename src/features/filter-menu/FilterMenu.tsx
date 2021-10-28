@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import CheckJobTypeEmployees from '../check-job-type-employees/check-job-type-employees'
+import CheckJobTypeEmployees from '../../common/components/check-job-type-employees/check-job-type-employees'
 import LocationFilter from '../location-filter/LocationFilter'
 
 import './FilterMenu.scss'

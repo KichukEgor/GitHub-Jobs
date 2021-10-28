@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react'
+import { ChangeEventHandler, FC } from 'react'
 
 import './RadioButton.scss'
 
@@ -8,22 +8,21 @@ type TProps = {
   value: string
   name: string
   checked: boolean
-  onClick: MouseEventHandler<HTMLInputElement>
+  onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const RadioButton:FC<TProps> = ({
-  value, name, onClick, checked
+  value, name, onChange, checked
 }) => (
   <label className={mainCssStyle} htmlFor={value}>
     <input
       name={name}
       id={value}
       value={value}
-      // TODO warning checked -> defaultChecked
       checked={checked}
       type="radio"
       className={mainCssStyle}
-      onClick={onClick}
+      onChange={onChange}
     />
     {value}
   </label>

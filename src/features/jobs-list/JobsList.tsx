@@ -24,6 +24,7 @@ const JobsList = () => {
       <ul className={mainCssClass}>
         {
           jobsList?.map(
+            /* TODO id -> job */
             ({
               id, type, created_at, company, location, title, company_logo
             }) => (

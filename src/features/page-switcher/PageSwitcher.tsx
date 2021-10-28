@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 import PageSwitcherButton from '../../common/components/page-switcher-button/PageSwitcherButton'
 
 import { setCurrentPage } from '../../store/jobs-list/actions'
-import { usePagination } from '../../hooks/usePagination'
+
+import { createArrayOfPageNums } from './utils'
 
 import './PageSwitcher.scss'
 
@@ -17,7 +18,7 @@ type TProps={
 }
 
 const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
-  const { arrayOfPageNum } = usePagination(lobsCount, pageLimit)
+  const { arrayOfPageNum } = createArrayOfPageNums(lobsCount, pageLimit)
   const dispatch = useDispatch()
   const switchPageHandler = (nextPage: number) => dispatch(setCurrentPage(nextPage))
 

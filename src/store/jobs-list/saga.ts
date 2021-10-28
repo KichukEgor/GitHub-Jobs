@@ -8,16 +8,17 @@ import {
 
 import { fetchJobsList } from '../../api/api'
 
-import { TJob } from '../../common/models/job'
-import { TQueryParams } from '../../common/models/queryParams'
 import { HttpStatusCode } from '../../common/enums/httpStatusCode'
+
+import { TJob } from '../../common/models/job'
+import { TGetJobsPayload } from '../../common/models/getJobsPayload'
 
 type TDataPayload = {
   jobs: TJob[]
   jobsCount: number
 }
 
-function* getJobsListSaga({ payload }: PayloadAction<TQueryParams>) {
+function* getJobsListSaga({ payload }: PayloadAction<TGetJobsPayload>) {
   try {
     const { jobs, jobsCount }: TDataPayload = yield fetchJobsList(payload)
     yield putResolve(setJobsList(jobs))

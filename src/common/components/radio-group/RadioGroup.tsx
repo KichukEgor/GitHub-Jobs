@@ -1,56 +1,29 @@
-import { FC } from 'react'
-
-import { useDispatch } from 'react-redux'
+import { ChangeEventHandler, FC } from 'react'
 
 import RadioButton from '../radio-button/RadioButton'
 
-import { setSearchLocationParam } from '../../../store/jobs-list/actions'
-
 import './RadioGroup.scss'
 
-const locationInputData = [
-  {
-    name: 'city',
-    value: 'London'
-  },
-  {
-    name: 'city',
-    value: 'Amsterdam'
-  },
-  {
-    name: 'city',
-    value: 'Schwerin'
-  },
-  {
-    name: 'city',
-    value: 'Berlin'
-  }
-]
-
-type TProps={
-  location: string
+type TProps = {
+  inputData: Record<string, string|number>[],
+  onChange: ChangeEventHandler<HTMLInputElement>
+  location?: string
 }
 
 const mainCssStyle = 'radio-group'
 
-const RadioGroup:FC<TProps> = ({ location }) => {
-  const dispatch = useDispatch()
-  const handleChange = (value:string) => {
-    dispatch(setSearchLocationParam(value))
-  }
-  return (
-    <ul className={mainCssStyle}>
-      {locationInputData.map(({ name, value }) => (
-        <RadioButton
-          key={value}
-          name={name}
-          checked={location === value}
-          value={value}
-          onClick={() => handleChange(value)}
-        />
-      ))}
-    </ul>
-  )
-}
+const RadioGroup:FC<TProps> = ({ inputData, onChange, location }) => (
+  <ul className={mainCssStyle}>
+    {inputData.map(({ name, value }) => (
+      <RadioButton
+        key={value}
+        name={name.toString()}
+        checked={location === value}
+        value={value.toString()}
+        onChange={onChange}
+      />
+    ))}
+  </ul>
+)
 
 export default RadioGroup

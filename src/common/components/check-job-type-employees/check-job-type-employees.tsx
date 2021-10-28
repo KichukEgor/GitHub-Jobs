@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import UseJobType from '../../hooks/useJobType'
+import UseJobType from '../../../hooks/useJobType'
 
 import './check-job-type-employees.scss'
 

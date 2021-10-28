@@ -1,33 +1,43 @@
-import { FC } from 'react'
-import { useSelector } from 'react-redux'
-import { JobsList, GlobalSearch } from '../index'
+import { FC, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { JobsList, GlobalSearch } from '../index'
 import FilterMenu from '../filter-menu/FilterMenu'
 import ErrorMessage from '../../common/components/error-message/ErrorMessage'
+import Spinner from '../../common/components/spinner/Spinner'
 
 import useGetJobsList from '../../hooks/useGetJobsList'
 
-import { selectError } from '../../store/jobs-list/selectors'
+import { selectError, selectIsLoading } from '../../store/jobs-list/selectors'
+import { setJobListLoading } from '../../store/jobs-list/actions'
 
 import './HomePage.scss'
 
 const mainCssClass = 'home-page'
-// todo loading
+
 const HomePage: FC = () => {
   useGetJobsList()
+  const isLoading = useSelector(selectIsLoading)
   const error = useSelector(selectError)
-  const searchResult = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setJobListLoading(false))
+  }, [dispatch, isLoading])
+
+  const searchResult = (() => {
     if (error) {
       return <ErrorMessage />
     }
     return <JobsList />
-  }
+  })()
+
   return (
     <>
       <GlobalSearch />
       <main className={mainCssClass}>
         <FilterMenu />
-        { searchResult() }
+        { isLoading ? <Spinner /> : searchResult }
       </main>
     </>
   )

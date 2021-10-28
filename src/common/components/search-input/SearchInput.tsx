@@ -6,7 +6,7 @@ type TSearchInput = {
     iconClassName: string,
     value: string,
     placeholder?: string,
-    addClassName?: string
+    inputClassName?: string
     onChange: ChangeEventHandler<HTMLInputElement>
 }
 
@@ -17,12 +17,12 @@ const SearchInput: FC <TSearchInput> = ({
   placeholder,
   value,
   onChange,
-  addClassName
+  inputClassName
 }) => (
   <div className={mainCssClass}>
     <i className={`${iconClassName} ${mainCssClass}__icon`} />
     <input
-      className={`${mainCssClass}__input ${addClassName}`}
+      className={`${mainCssClass}__input ${inputClassName}`}
       type="text"
       value={value}
       onChange={onChange}

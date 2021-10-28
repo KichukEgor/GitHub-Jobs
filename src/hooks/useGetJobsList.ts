@@ -4,30 +4,25 @@ import { getJobsList } from '../store/jobs-list/actions'
 import { selectJobsListParameters } from '../store/jobs-list/selectors'
 
 const useGetJobsList = () => {
-  const {
-    pageLimit,
-    currentPage,
-    description,
-    type,
-    location
-  } = useSelector(selectJobsListParameters)
+  const searchParams = useSelector(selectJobsListParameters)
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getJobsList({
-      page: currentPage,
-      limit: pageLimit,
-      description,
-      type,
-      location
+      /* TODO разные названия полей */
+      description: searchParams.description,
+      limit: searchParams.pageLimit,
+      location: searchParams.location,
+      page: searchParams.currentPage,
+      type: searchParams.type
     }))
   }, [
     dispatch,
-    currentPage,
-    pageLimit,
-    description,
-    type,
-    location
+    searchParams.description,
+    searchParams.pageLimit,
+    searchParams.location,
+    searchParams.currentPage,
+    searchParams.type
   ])
 }
 

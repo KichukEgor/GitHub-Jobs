@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit'
 import {
   getJobsList,
   setCurrentPage,
-  setJobListError,
+  setJobListError, setJobListLoading,
   setJobsCount,
   setJobsList, setPageLimit,
   setSearchDescriptionParam,
@@ -21,6 +21,7 @@ export type TStateJobsListReducer = {
     description: string,
     location: string,
     type: string,
+    isLoading: boolean
     error: string
 }
 
@@ -32,6 +33,7 @@ const initialState: TStateJobsListReducer = {
   description: '',
   location: '',
   type: '',
+  isLoading: true,
   error: ''
 }
 
@@ -39,6 +41,7 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getJobsList, (state, { payload }) => {
       state.error = ''
+      state.isLoading = true
     })
     .addCase(setJobsList, (state, { payload }) => {
       state.jobsList = payload
@@ -55,7 +58,6 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSearchLocationParam, (state, { payload }) => {
       state.location = payload
-      console.log('payloadpayloadpayloadpayloadpayload', payload)
       state.currentPage = 1
     })
     .addCase(setSearchTypeParam, (state, { payload }) => {
@@ -64,6 +66,9 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setPageLimit, (state, { payload }) => {
       state.pageLimit = payload
+    })
+    .addCase(setJobListLoading, (state, { payload }) => {
+      state.isLoading = payload
     })
     .addCase(setJobListError, (state, { payload }) => {
       state.error = payload

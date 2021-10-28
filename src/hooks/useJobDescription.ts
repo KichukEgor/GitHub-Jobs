@@ -7,7 +7,7 @@ type TUrlParams = {
     id: string
 }
 
-const UseJobDescription = () => {
+const useJobDescription = () => {
   const dispatch = useDispatch()
   const { id }: TUrlParams = useParams()
   useEffect(() => {
@@ -15,4 +15,4 @@ const UseJobDescription = () => {
   }, [dispatch, id])
 }
 
-export default UseJobDescription
+export default useJobDescription

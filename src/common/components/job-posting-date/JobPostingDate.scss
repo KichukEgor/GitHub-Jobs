@@ -3,8 +3,13 @@
 .job-posting-date {
   color: get-color($text,300);
 
-  &__icon {
+  &__icon{
+    display: inline-block;
     font-size: 1.4rem;
-    margin: 0 .8rem;
+    padding-right: .8rem;
+  }
+
+  &__title{
+    margin-right: 0.8rem;
   }
 }

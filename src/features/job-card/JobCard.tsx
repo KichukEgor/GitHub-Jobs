@@ -23,13 +23,11 @@ const JobCard = ({
 }: TProps) => (
   <Link key={id} to={`/${id}`}>
     <li className={mainCssClass}>
-      <div>
-        <img
-          className={`${mainCssClass}__logo`}
-          src={companyLogo}
-          alt={title}
-        />
-      </div>
+      <img
+        className={`${mainCssClass}__logo`}
+        src={companyLogo}
+        alt={title}
+      />
       <div className={`${mainCssClass}__info`}>
         <h3 className={`${mainCssClass}__company`}>{company}</h3>
         <h2 className={`${mainCssClass}__title`}>{title}</h2>

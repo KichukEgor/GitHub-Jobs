@@ -2,9 +2,18 @@
 
 .back-button{
   color: #1E86FF;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   background: inherit;
-  background-color: inherit;
+  transition: .5s;
+
+  &:hover {
+    .back-button__arrow {
+      transform: scale(1.5, 1.2);
+      color: get-color($primary, 700);
+      transition: .3s;
+    }
+  }
+
   &__arrow {
     margin-right: 1rem;
   }

@@ -1,0 +1,20 @@
+@import '../../styles/common';
+
+.short-job-card {
+  display: flex;
+  height: 4.5rem;
+  margin: 3.2rem 0;
+
+  &__icon {
+    border-radius: 1rem;
+    margin-right: 1.2rem;
+  }
+
+  &__title {
+    font-family: Roboto, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+    color: #334680;
+  }
+}

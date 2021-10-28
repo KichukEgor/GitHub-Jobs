@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux'
 
-import { JobLocation, JobPostingDate, JobTypeOfEmployees } from '../index'
 import ErrorMessage from '../../common/components/error-message/ErrorMessage'
 
 import { selectJobDetails } from '../../store/job-description/selectors'
+
+import DescriptionPageHeader from '../description-page-header/DescriptionPageHeader'
+import ShortJobCard from '../../common/components/short-job-card/ShortJobCard'
+import JobDescription from '../../common/components/job-description/JobDescription'
 
 import UseJobDescription from '../../hooks/useJobDescription'
 
@@ -17,12 +20,9 @@ const DescriptionPageContent = () => {
 
   return (job ? (
     <section className={mainCssClass}>
-      <div>
-        <h1 className={`${mainCssClass}__title`}>{job.title}</h1>
-        <JobTypeOfEmployees type={job?.type} />
-      </div>
-      <JobPostingDate createdAt={job.created_at} />
-      <JobLocation location={job.location} />
+      <DescriptionPageHeader createdAt={job.created_at} title={job.title} type={job.type} />
+      <ShortJobCard companyLogo={job.company_logo} company={job.company} location={job.location} />
+      <JobDescription description={job.description} />
     </section>
   )
     : <ErrorMessage />)

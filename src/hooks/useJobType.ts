@@ -2,15 +2,11 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { setSearchTypeParam } from '../store/jobs-list/actions'
 
-const UseJobType = (jobType: boolean) => {
+const useJobType = (jobType: boolean) => {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (jobType) {
-      dispatch(setSearchTypeParam('Full Time'))
-    } else {
-      dispatch(setSearchTypeParam(''))
-    }
+    dispatch(setSearchTypeParam(jobType ? 'Full Time' : ''))
   }, [dispatch, jobType])
 }
 
-export default UseJobType
+export default useJobType

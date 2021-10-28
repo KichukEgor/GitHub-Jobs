@@ -1,0 +1,13 @@
+@import "src/common/styles/common";
+
+.job-description {
+  font-family: Roboto sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  color: #334680;
+
+  p {
+    margin-bottom: 1.6rem;
+  }
+}

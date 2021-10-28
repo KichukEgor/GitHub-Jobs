@@ -1,0 +1,13 @@
+@import "src/common/styles/common";
+
+.description-page-header{
+
+   &__title{
+    display: inline-block;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #334680;
+    padding: 0 2rem 1rem 0;
+  }
+}
