@@ -4,7 +4,7 @@ import './PageSwitcherButton.scss'
 
 type TProps = {
   buttonContent: string | number | ReactElement
-  currentPage?: number
+  page?: number
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
 }
@@ -12,13 +12,13 @@ type TProps = {
 const mainCssClass = 'page-switcher-button'
 
 const PageSwitcherButton = ({
-  buttonContent, onClick, disabled, currentPage
+  buttonContent, onClick, disabled, page
 }:TProps) => (
   <button
     type="button"
     disabled={disabled}
     onClick={onClick}
-    className={currentPage === buttonContent ? `${mainCssClass}_active` : mainCssClass}
+    className={page === buttonContent ? `${mainCssClass}_active` : mainCssClass}
   >
     {buttonContent}
   </button>

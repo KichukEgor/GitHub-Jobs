@@ -13,37 +13,28 @@ const JobsList = () => {
   const {
     jobsList,
     totalJobsCount,
-    pageLimit,
-    currentPage
+    limit,
+    page
   } = useSelector(selectJobsListComponentParameters)
 
-  const isPageOnlyOne = pageLimit >= totalJobsCount
+  const isPageOnlyOne = limit >= totalJobsCount
 
   return (
     <section>
       <ul className={mainCssClass}>
         {
           jobsList?.map(
-            /* TODO id -> job */
-            ({
-              id, type, created_at, company, location, title, company_logo
-            }) => (
+            (job) => (
               <JobCard
-                key={id}
-                id={id}
-                companyLogo={company_logo}
-                title={title}
-                company={company}
-                type={type}
-                location={location}
-                createdAt={created_at}
+                key={job.id}
+                job={job}
               />
             )
           )
         }
       </ul>
       {
-        !isPageOnlyOne && <PaginationMenu lobsCount={totalJobsCount} pageLimit={pageLimit} currentPage={currentPage} />
+        !isPageOnlyOne && <PaginationMenu lobsCount={totalJobsCount} limit={limit} page={page} />
       }
     </section>
   )

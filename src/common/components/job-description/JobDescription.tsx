@@ -10,9 +10,7 @@ type TProps = {
 const mainClassCss = 'job-description'
 
 const JobDescription:FC<TProps> = ({ description }) => {
-  function createMarkup() {
-    return { __html: DOMPurify.sanitize(description) }
-  }
+  const createMarkup = () => ({ __html: DOMPurify.sanitize(description) })
 
   return <div className={mainClassCss} dangerouslySetInnerHTML={createMarkup()} />
 }

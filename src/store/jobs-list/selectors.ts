@@ -7,14 +7,14 @@ const selectState = ({ jobsList }: RootState) => jobsList
 export const selectJobsListParameters = createSelector(
   selectState,
   ({
-    pageLimit,
-    currentPage,
+    limit,
+    page,
     description,
     type,
     location
   }) => ({
-    pageLimit,
-    currentPage,
+    limit,
+    page,
     description,
     type,
     location
@@ -26,13 +26,13 @@ export const selectJobsListComponentParameters = createSelector(
   ({
     jobsList,
     totalJobsCount,
-    pageLimit,
-    currentPage
+    limit,
+    page
   }) => ({
     jobsList,
     totalJobsCount,
-    pageLimit,
-    currentPage
+    limit,
+    page
   })
 )
 
@@ -43,7 +43,7 @@ export const selectError = createSelector(
 
 export const selectPageLimit = createSelector(
   selectState,
-  ({ pageLimit }) => pageLimit
+  ({ limit }) => limit
 )
 
 export const selectIsLoading = createSelector(

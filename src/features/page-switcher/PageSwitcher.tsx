@@ -13,12 +13,12 @@ const mainCssClass = 'page-switcher'
 
 type TProps={
   lobsCount: number,
-  pageLimit: number,
-  currentPage: number
+  limit: number,
+  page: number
 }
 
-const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
-  const { arrayOfPageNum } = createArrayOfPageNums(lobsCount, pageLimit)
+const PageSwitcher: FC<TProps> = ({ lobsCount, limit, page }) => {
+  const { arrayOfPageNum } = createArrayOfPageNums(lobsCount, limit)
   const dispatch = useDispatch()
   const switchPageHandler = (nextPage: number) => dispatch(setCurrentPage(nextPage))
 
@@ -26,21 +26,21 @@ const PageSwitcher: FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => {
     <div className={mainCssClass}>
       <PageSwitcherButton
         buttonContent={<i className="fas fa-angle-left" />}
-        disabled={currentPage === 1}
-        onClick={() => switchPageHandler(currentPage - 1)}
+        disabled={page === 1}
+        onClick={() => switchPageHandler(page - 1)}
       />
       { arrayOfPageNum.map((pageNum) => (
         <PageSwitcherButton
           key={pageNum}
-          currentPage={currentPage}
+          page={page}
           buttonContent={pageNum}
           onClick={() => switchPageHandler(pageNum)}
         />
       )) }
       <PageSwitcherButton
         buttonContent={<i className="fas fa-angle-right" />}
-        disabled={currentPage === arrayOfPageNum.length}
-        onClick={() => switchPageHandler(currentPage + 1)}
+        disabled={page === arrayOfPageNum.length}
+        onClick={() => switchPageHandler(page + 1)}
       />
     </div>
   )

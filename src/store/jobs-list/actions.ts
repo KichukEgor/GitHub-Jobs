@@ -1,6 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
 import { TJob } from '../../common/models/job'
-import { TGetJobsPayload } from '../../common/models/getJobsPayload'
 
 export const getJobsList = createAction<TGetJobsPayload>('GET_JOBS_LIST')
 export const setJobsList = createAction<TJob[]>('SET_JOBS_LIST')
@@ -12,3 +11,11 @@ export const setSearchLocationParam = createAction<string>('SET_SEARCH_LOCATION_
 export const setSearchTypeParam = createAction<string>('SET_SEARCH_TYPE_PARAM')
 export const setJobListLoading = createAction<boolean>('SET_JOBS_LIST_LOADING')
 export const setJobListError = createAction<string>('SET_JOBS_LIST_ERROR')
+
+export type TGetJobsPayload = {
+    description:string
+    type:string
+    location:string
+    page:number
+    limit:number
+}

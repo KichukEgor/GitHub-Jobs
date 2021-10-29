@@ -11,13 +11,13 @@ import './SelectPageLimit.scss'
 const mainClassCss = 'select-page-limit'
 
 const SelectPageLimit:FC = () => {
-  const pageLimit = useSelector(selectPageLimit)
+  const limit = useSelector(selectPageLimit)
   const dispatch = useDispatch()
 
   return (
     <Select
       label="Limit"
-      currentValue={pageLimit}
+      currentValue={limit}
       optionValues={[5, 10, 15]}
       className={mainClassCss}
       onChange={(e) => dispatch(setPageLimit(Number(e.target.value)))}

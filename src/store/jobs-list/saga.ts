@@ -3,7 +3,7 @@ import { putResolve, takeLatest } from 'redux-saga/effects'
 import { PayloadAction } from '@reduxjs/toolkit'
 
 import {
-  getJobsList, setJobListError, setJobsCount, setJobsList
+  getJobsList, setJobListError, setJobsCount, setJobsList, TGetJobsPayload
 } from './actions'
 
 import { fetchJobsList } from '../../api/api'
@@ -11,7 +11,6 @@ import { fetchJobsList } from '../../api/api'
 import { HttpStatusCode } from '../../common/enums/httpStatusCode'
 
 import { TJob } from '../../common/models/job'
-import { TGetJobsPayload } from '../../common/models/getJobsPayload'
 
 type TDataPayload = {
   jobs: TJob[]

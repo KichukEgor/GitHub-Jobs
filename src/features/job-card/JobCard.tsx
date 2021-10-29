@@ -1,31 +1,31 @@
-import { Link } from 'react-router-dom'
+import { FC } from 'react'
 
+import { Link } from 'react-router-dom'
 import JobTypeOfEmployees from '../../common/components/job-type-of-employees/JobTypeOfEmployees'
 import JobLocation from '../../common/components/job-location/jobLocation'
+
 import JobPostingDate from '../../common/components/job-posting-date/JobPostingDate'
+
+import { TJob } from '../../common/models/job'
 
 import './JobCard.scss'
 
-const mainCssClass = 'job-card'
-
 type TProps = {
-  id: string
-  companyLogo: string
-  title: string
-  company: string
-  type: string
-  location: string
-  createdAt: string
+  job: TJob
 }
 
-const JobCard = ({
-  id, companyLogo, title, company, type, location, createdAt
-}: TProps) => (
+const mainCssClass = 'job-card'
+
+const JobCard:FC< TProps> = ({
+  job: {
+    id, company, title, type, location, company_logo, created_at
+  }
+}) => (
   <Link key={id} to={`/${id}`}>
     <li className={mainCssClass}>
       <img
         className={`${mainCssClass}__logo`}
-        src={companyLogo}
+        src={company_logo}
         alt={title}
       />
       <div className={`${mainCssClass}__info`}>
@@ -35,7 +35,7 @@ const JobCard = ({
           <JobTypeOfEmployees type={type} />
           <p>
             <JobLocation location={location} />
-            <JobPostingDate createdAt={createdAt} />
+            <JobPostingDate createdAt={created_at} />
           </p>
         </div>
       </div>

@@ -16,8 +16,8 @@ import { TJob } from '../../common/models/job'
 export type TStateJobsListReducer = {
     jobsList: null | TJob[],
     totalJobsCount: number,
-    pageLimit: number,
-    currentPage: number,
+    limit: number,
+    page: number,
     description: string,
     location: string,
     type: string,
@@ -28,8 +28,8 @@ export type TStateJobsListReducer = {
 const initialState: TStateJobsListReducer = {
   jobsList: null,
   totalJobsCount: 0,
-  pageLimit: 5,
-  currentPage: 1,
+  limit: 5,
+  page: 1,
   description: '',
   location: '',
   type: '',
@@ -39,7 +39,7 @@ const initialState: TStateJobsListReducer = {
 
 export const jobsListReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(getJobsList, (state, { payload }) => {
+    .addCase(getJobsList, (state) => {
       state.error = ''
       state.isLoading = true
     })
@@ -50,22 +50,22 @@ export const jobsListReducer = createReducer(initialState, (builder) => {
       state.totalJobsCount = payload
     })
     .addCase(setCurrentPage, (state, { payload }) => {
-      state.currentPage = payload
+      state.page = payload
     })
     .addCase(setSearchDescriptionParam, (state, { payload }) => {
       state.description = payload
-      state.currentPage = 1
+      state.page = 1
     })
     .addCase(setSearchLocationParam, (state, { payload }) => {
       state.location = payload
-      state.currentPage = 1
+      state.page = 1
     })
     .addCase(setSearchTypeParam, (state, { payload }) => {
       state.type = payload
-      state.currentPage = 1
+      state.page = 1
     })
     .addCase(setPageLimit, (state, { payload }) => {
-      state.pageLimit = payload
+      state.limit = payload
     })
     .addCase(setJobListLoading, (state, { payload }) => {
       state.isLoading = payload

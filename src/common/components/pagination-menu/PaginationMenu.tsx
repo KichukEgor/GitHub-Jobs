@@ -7,16 +7,16 @@ import './PaginationMenu.scss'
 
 type TProps={
     lobsCount: number,
-    pageLimit: number,
-    currentPage: number
+    limit: number,
+    page: number
 }
 
 const mainClassCss = 'pagination-menu'
 
-const PaginationMenu:FC<TProps> = ({ lobsCount, pageLimit, currentPage }) => (
+const PaginationMenu:FC<TProps> = ({ lobsCount, limit, page }) => (
   <section className={mainClassCss}>
     <SelectPageLimit />
-    <PageSwitcher lobsCount={lobsCount} pageLimit={pageLimit} currentPage={currentPage} />
+    <PageSwitcher lobsCount={lobsCount} limit={limit} page={page} />
   </section>
 )
 

@@ -4,14 +4,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import SearchInput from '../../common/components/search-input/SearchInput'
 import RadioGroup from '../../common/components/radio-group/RadioGroup'
 
-import { locationInputData } from './inputData'
-
 import { setSearchLocationParam } from '../../store/jobs-list/actions'
 import { selectLocation } from '../../store/jobs-list/selectors'
 
 import useDebounce from '../../hooks/useDebounce'
 
 import './LocationFilter.scss'
+
+const locationInputData = [
+  {
+    name: 'city',
+    value: 'London'
+  },
+  {
+    name: 'city',
+    value: 'Amsterdam'
+  },
+  {
+    name: 'city',
+    value: 'Schwerin'
+  },
+  {
+    name: 'city',
+    value: 'Berlin'
+  }
+]
 
 const mainCssStyle = 'location-filter'
 

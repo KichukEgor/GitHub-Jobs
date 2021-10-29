@@ -1,13 +1,12 @@
 import axios from 'axios'
-import { TGetJobsPayload } from '../common/models/getJobsPayload'
+import { TGetJobsPayload } from '../store/jobs-list/actions'
 
 export const api = axios.create({
   baseURL: 'api',
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json'
-  },
-  timeout: 10000000
+  }
 })
 
 export async function fetchJobsList(queryData: TGetJobsPayload) {
