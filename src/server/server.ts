@@ -1,4 +1,5 @@
 import { createServer, Model, Response } from 'miragejs'
+import { v4 as uuidv4 } from 'uuid'
 
 import { TJob } from '../../src/common/models/job'
 
@@ -28,9 +29,15 @@ createServer({
       }
       return getResponseError(HttpStatusCode.NOT_FOUND)
     })
-    this.get('jobs/:id', (schema, { params }) => {
+    this.get('/jobs/:id', (schema, { params }) => {
       const job = this.schema.find('job', params.id)
       return job ?? getResponseError(HttpStatusCode.NOT_FOUND)
+    })
+    this.put('/jobs', (schema, request) => {
+      const attrs = JSON.parse(request.requestBody)
+      attrs.id = uuidv4()
+      attrs.created_at = new Date()
+      return { attrs }
     })
   },
   seeds(server) {

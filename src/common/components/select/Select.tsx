@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC } from 'react'
 
-import './SelectOption.scss'
+import './Select.scss'
 
 type TProps = {
     label: string
@@ -15,18 +15,25 @@ const mainClassCss = 'select'
 const Select:FC<TProps> = ({
   label, currentValue, optionValues, onChange, className
 }) => (
-  <label className={`${mainClassCss} ${className}`} htmlFor="select-page-limit">
-    Limit
+  <label className={`${mainClassCss} ${className}`} htmlFor={label}>
+    {label}
     <select
-      id="select-page-limit"
-      name="page"
+      id={label}
+      name={label}
       value={currentValue}
       className={`${mainClassCss}__select`}
       onChange={onChange}
     >
       {optionValues.map(
-        (optionValue) =>
-          <option className={className} value={optionValue}>{optionValue}</option>
+        (value) => (
+          <option
+            key={value}
+            className={className}
+            value={value}
+          >
+            {value}
+          </option>
+        )
       )}
     </select>
   </label>

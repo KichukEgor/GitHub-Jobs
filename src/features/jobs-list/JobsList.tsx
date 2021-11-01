@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import PaginationMenu from '../../common/components/pagination-menu/PaginationMenu'
 import JobCard from '../job-card/JobCard'
+import CreateJobButton from '../create-job-button/CreateJobButton'
+import JobForm from '../job-form/JobForm'
+import Portal from '../../common/components/Portal/Portal'
 
 import { selectJobsListComponentParameters } from '../../store/jobs-list/selectors'
-
 import './JobsList.scss'
 
 const mainCssClass = 'jobs-list'
@@ -16,11 +19,20 @@ const JobsList = () => {
     limit,
     page
   } = useSelector(selectJobsListComponentParameters)
-
   const isPageOnlyOne = limit >= totalJobsCount
+
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
     <section>
+      <CreateJobButton onClick={() => setIsOpen(true)} />
+      {isOpen
+        ? (
+          <Portal className="job-form">
+            <JobForm />
+          </Portal>
+        )
+        : null}
       <ul className={mainCssClass}>
         {
           jobsList?.map(

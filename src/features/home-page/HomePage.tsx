@@ -12,6 +12,7 @@ import { selectError, selectIsLoading } from '../../store/jobs-list/selectors'
 import { setJobListLoading } from '../../store/jobs-list/actions'
 
 import './HomePage.scss'
+import JobForm from '../job-form/JobForm'
 
 const mainCssClass = 'home-page'
 
@@ -26,7 +27,9 @@ const HomePage: FC = () => {
   }, [dispatch, isLoading])
 
   const searchResult = (() => {
-    if (error) {
+    if (isLoading) {
+      <Spinner />
+    } else if (error) {
       return <ErrorMessage />
     }
     return <JobsList />
@@ -37,7 +40,7 @@ const HomePage: FC = () => {
       <GlobalSearch />
       <main className={mainCssClass}>
         <FilterMenu />
-        { isLoading ? <Spinner /> : searchResult }
+        { searchResult }
       </main>
     </>
   )
