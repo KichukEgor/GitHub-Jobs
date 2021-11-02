@@ -1,22 +1,46 @@
-import {
-  UseFormRegister
-} from 'react-hook-form'
+import { Controller, useController } from 'react-hook-form'
 
 import './Input.scss'
+import { ErrorMessage } from '@hookform/error-message'
 
-type TInput = {
-    name: string
-    register: UseFormRegister<Record<string, string>>
+type TProps = {
+    fieldName: string
+    register: any
+    control: any
 }
 
 const mainCssClass = 'input'
 
-export function Input({ register, name, ...rest }: TInput) {
+export function Input({ register, fieldName, control }: TProps) {
   return (
-    <div className={mainCssClass}>
-      <label className={`${mainCssClass}__label`} htmlFor={name}>{name}</label>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <input className={`${mainCssClass}__input`} {...register(name)} {...rest} />
-    </div>
+    <Controller
+      control={control}
+      name="test"
+      render={({
+        field: {
+          onChange, onBlur, value, name, ref
+        },
+        fieldState: {
+          invalid, isTouched, isDirty, error
+        },
+        formState: { errors }
+      }) => (
+        <div className={mainCssClass}>
+          <label className={`${mainCssClass}__label`} htmlFor={fieldName}>{fieldName}</label>
+          <input
+            placeholder={fieldName}
+            className={`${mainCssClass}__input`}
+            {...register(fieldName, {
+              required: 'This is required.',
+              pattern: {
+                value: /d+/,
+                message: 'This input is number only.'
+              }
+            })}
+          />
+          <ErrorMessage errors={errors} name={fieldName} />
+        </div>
+      )}
+    />
   )
 }

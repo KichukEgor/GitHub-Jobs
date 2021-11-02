@@ -1,0 +1,20 @@
+@import "src/common/styles/common";
+
+.input {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+
+  &__label {
+    padding-bottom: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  &__input {
+    height: 2.6rem;
+    padding: .2rem;
+    font-size: 1.6rem;
+  }
+}

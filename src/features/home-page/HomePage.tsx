@@ -12,7 +12,6 @@ import { selectError, selectIsLoading } from '../../store/jobs-list/selectors'
 import { setJobListLoading } from '../../store/jobs-list/actions'
 
 import './HomePage.scss'
-import JobForm from '../job-form/JobForm'
 
 const mainCssClass = 'home-page'
 

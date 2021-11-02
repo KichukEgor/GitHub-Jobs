@@ -56,6 +56,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'react/prop-types': 'off',
     'arrow-body-style': ['error', 'as-needed'],
-    'implicit-arrow-linebreak': 'off'
+    'implicit-arrow-linebreak': 'off',
+    'react/jsx-props-no-spreading': 'off'
   }
 }

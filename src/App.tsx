@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import {
+  FC, useCallback, useEffect, useState
+} from 'react'
 import {
   Switch, BrowserRouter, Route, Redirect
 } from 'react-router-dom'
@@ -12,7 +14,20 @@ import { sagaMiddleware } from './store/store'
 import './App.scss'
 
 const App: FC = () => {
+  const [isModalVisible, setIsModalVisible] = useState(true)
+
+  const isVisible = useCallback(
+    () => setIsModalVisible((prevState) => !prevState),
+    []
+  )
   sagaMiddleware.run(rootSaga)
+
+  useEffect(() => {
+    if (isModalVisible) {
+      document.body.style.overflowX = 'hidden'
+      document.body.style.overflow = 'visible'
+    } else document.body.style.overflow = 'hidden'
+  }, [isModalVisible])
 
   return (
     <BrowserRouter>

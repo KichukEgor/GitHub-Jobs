@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import PaginationMenu from '../../common/components/pagination-menu/PaginationMenu'
 import JobCard from '../job-card/JobCard'
 import CreateJobButton from '../create-job-button/CreateJobButton'
-import JobForm from '../job-form/JobForm'
-import Portal from '../../common/components/Portal/Portal'
+import ModalJobForm from '../modal-job-form/ModalJobForm'
+import Portal from '../../common/components/portal/Portal'
 
 import { selectJobsListComponentParameters } from '../../store/jobs-list/selectors'
 import './JobsList.scss'
@@ -29,7 +29,7 @@ const JobsList = () => {
       {isOpen
         ? (
           <Portal className="job-form">
-            <JobForm />
+            <ModalJobForm />
           </Portal>
         )
         : null}
