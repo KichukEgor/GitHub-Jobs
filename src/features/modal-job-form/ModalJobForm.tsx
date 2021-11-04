@@ -1,17 +1,29 @@
-import { FC } from 'react'
-import { useHistory } from 'react-router-dom'
+import { FC, MouseEventHandler } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { ErrorMessage } from '@hookform/error-message'
+import styled from 'styled-components'
 import { Input } from '../../common/components/input/Input'
 import { FormSelect } from '../../common/components/form-select/FormSelect'
-
+import { Icon } from '../../common/components/icon/Icon'
+import ImageUploader from '../../common/components/imageUploader/ImageUploader'
 import * as S from './styled'
 
-import { api } from '../../api/api'
+import { inputData } from './inputData'
+
+export const Cross = styled(Icon)`
+  top: 2rem;
+  right: 1rem;
+  fill: red;
+  position: absolute;
+  z-index: 100;
+  
+  :hover {
+    cursor: pointer;
+  }
+`
 
 type TProps = {
-    modalVisibility?: (arg:boolean)=>void
+    modalVisibility: MouseEventHandler<SVGSVGElement>
 }
 
 type TInputs = {
@@ -26,40 +38,38 @@ const mainClassCss = 'modal-job-form'
 const ModalJobForm:FC<TProps> = ({ modalVisibility }) => {
   const {
     register, control, handleSubmit, formState: { errors }
-  } = useForm<TInputs>({
+  } = useForm({
     mode: 'onBlur'
   })
-  const history = useHistory()
-  const closeModal = () => {
-    if (modalVisibility) {
-      modalVisibility(true)
-    }
-    history.push('./')
-  }
+
   const onSubmit = (data:any) => {
-    console.log('123')
-    api.patch('/jobs', data)
+    console.log(data)
   }
 
   return (
     <S.ModalWrapper>
-      <svg>
-        <use xlinkHref="#cross" />
-      </svg>
       <S.Form className={mainClassCss} onSubmit={handleSubmit(onSubmit)}>
+        <Cross iconId="cross" size="3rem" onClick={modalVisibility} />
         <S.H1>Create new Job</S.H1>
-        {/* TODO типизация */}
-        {(['company', 'title', 'region', 'logo']).map((fieldName) => (
-          <Input key={fieldName} register={register} fieldName={fieldName} control={control} />
+        {inputData.map(({ name, validationRules, errorMessage }) => (
+          <Input
+            key={name}
+            register={register}
+            control={control}
+            fieldName={name}
+            validationRules={validationRules}
+            errorMessage={errorMessage}
+          />
         ))}
+        <S.H3>Description</S.H3>
         <S.TextArea />
-        <input type="file" accept=".jpg,.jpeg,.png" />
         <FormSelect
           name="type"
           options={['Full Time', 'Part Time']}
           register={register}
         />
-        <input type="submit" />
+        <ImageUploader />
+        <S.SubmitInput type="submit" />
       </S.Form>
     </S.ModalWrapper>
   )

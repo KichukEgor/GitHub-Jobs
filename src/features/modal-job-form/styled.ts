@@ -14,6 +14,7 @@ export const ModalWrapper = styled.div`
 
 export const Form = styled.form`
   position: absolute;
+  min-width: 50rem;
   padding: 3rem 2rem;
   border-radius: 1rem;
   align-items: center;
@@ -23,8 +24,13 @@ export const Form = styled.form`
 
 export const H1 = styled.h1`
   text-align: center;
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  font-size: 3rem;
+`
+
+export const H3 = styled.h3`
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 `
 
 export const TextArea = styled.textarea`
@@ -32,4 +38,14 @@ export const TextArea = styled.textarea`
   min-height: 14rem;
   font-size: 1.4rem;
   padding: .4rem;
+`
+
+export const SubmitInput = styled.input`
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: .6rem;
+  box-shadow: 0 0 .4rem rgb(6, 123, 245);
 `

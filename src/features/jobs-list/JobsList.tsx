@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import PaginationMenu from '../../common/components/pagination-menu/PaginationMenu'
@@ -22,14 +22,18 @@ const JobsList = () => {
   const isPageOnlyOne = limit >= totalJobsCount
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const handleOpen = () => {
+    setIsOpen(true)
+    // @ts-ignore
+  }
 
   return (
     <section>
-      <CreateJobButton onClick={() => setIsOpen(true)} />
+      <CreateJobButton onClick={handleOpen} />
       {isOpen
         ? (
           <Portal className="job-form">
-            <ModalJobForm />
+            <ModalJobForm modalVisibility={() => setIsOpen(false)} />
           </Portal>
         )
         : null}

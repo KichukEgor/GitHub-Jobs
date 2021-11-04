@@ -1,21 +1,26 @@
-import { Controller, useController } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
+
+import { ErrorMessage } from '@hookform/error-message'
 
 import './Input.scss'
-import { ErrorMessage } from '@hookform/error-message'
 
 type TProps = {
     fieldName: string
+    validationRules: RegExp
+    errorMessage: string
     register: any
     control: any
 }
-
+/* TODO убрать регистер, добавить rules={{ required: true }} */
 const mainCssClass = 'input'
 
-export function Input({ register, fieldName, control }: TProps) {
+export function Input({
+  register, fieldName, control, validationRules, errorMessage
+}: TProps) {
   return (
     <Controller
       control={control}
-      name="test"
+      name={fieldName}
       render={({
         field: {
           onChange, onBlur, value, name, ref
@@ -33,8 +38,8 @@ export function Input({ register, fieldName, control }: TProps) {
             {...register(fieldName, {
               required: 'This is required.',
               pattern: {
-                value: /d+/,
-                message: 'This input is number only.'
+                value: validationRules,
+                message: errorMessage
               }
             })}
           />
