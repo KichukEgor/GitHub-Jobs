@@ -1,5 +1,7 @@
-import { FieldError, useController } from 'react-hook-form'
+import { ChangeEvent } from 'react'
+import { Control, useController } from 'react-hook-form'
 import styled from 'styled-components'
+import { showCorrectImage } from './utils'
 
 const Container = styled.div`
   display: flex;
@@ -30,44 +32,44 @@ const Image = styled.img`
 
 type TProps = {
     errorMessage: string
-    register: any
-    watch: any
-    fieldName: string
-    control: any
+    watch: string | File
+    name: string
+    defaultImage: string
+    control: Control<any, Record<string, unknown>>
+    rules: {
+        required: boolean,
+        validate: (watch: File | string) => boolean
+    }
 }
 
-const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg'
-
 const ImageUploader = ({
-  errorMessage, fieldName, watch, register, control
+  errorMessage, name, watch, control, defaultImage, rules
 }: TProps) => {
-  /* TODO утил для валидации */
-  const { field: { name }, formState: { errors } } = useController({
-    name: fieldName,
+  const { field: { onChange }, formState: { errors } } = useController({
+    name,
     control,
-    rules: {
-      required: true,
-      validate: (values: File[]) => values[0]?.type === 'image/jpeg'
-    }
+    rules
   })
+
+  const changeHandler = (e:ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) onChange(e.target.files[0])
+    else onChange(defaultImage)
+  }
 
   return (
     <Container>
       <Col1>
         <Title>Choose logo</Title>
         <input
-          name={name}
-          {...register(name)}
           type="file"
+          onChange={changeHandler}
         />
         {errors?.[name] && <span>{errorMessage}</span>}
       </Col1>
       <Image
-        alt="default"
+        alt="defaultImage"
         src={
-          watch === undefined || watch.length === 0
-            ? defaultImage
-            : URL.createObjectURL(watch[0])
+          showCorrectImage(watch, defaultImage)
         }
       />
     </Container>
