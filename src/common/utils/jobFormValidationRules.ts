@@ -1,13 +1,4 @@
-/* TODO */
-
-const jobFormValidationRules = (values:any) => {
-  const errors = {}
-  /* if (!values.email) {
-    errors.email = 'Email address is required'
-  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = 'Email address is invalid'
-  } */
-  return errors
+export const validateUploadedImage = (watch: File | string) => {
+  if (typeof watch === 'string') return true
+  return watch.type === 'image/jpeg'
 }
-
-export default jobFormValidationRules
