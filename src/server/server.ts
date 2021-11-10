@@ -33,11 +33,11 @@ createServer({
       const job = this.schema.find('job', params.id)
       return job ?? getResponseError(HttpStatusCode.NOT_FOUND)
     })
-    this.put('/jobs', (schema, request) => {
+    this.post('/jobs', (schema, request) => {
       const attrs = JSON.parse(request.requestBody)
       attrs.id = uuidv4()
       attrs.created_at = new Date()
-      return { attrs }
+      return schema.create('job', attrs)
     })
   },
   seeds(server) {

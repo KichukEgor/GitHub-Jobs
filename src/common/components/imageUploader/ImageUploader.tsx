@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FieldError, useController } from 'react-hook-form'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -28,24 +28,47 @@ const Image = styled.img`
   object-fit: cover;
 `
 
-const ImageUploader = () => {
-  const [selectedFile, setSelectedFile] = useState<any>()
-  const [isFilePicked, setIsFilePicked] = useState<boolean>(false)
+type TProps = {
+    errorMessage: string
+    register: any
+    watch: any
+    fieldName: string
+    control: any
+}
 
-  const changeHandler = (e:any) => {
-    setSelectedFile(URL.createObjectURL(e.target.files[0]))
-    setIsFilePicked(true)
-  }
+const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg'
+
+const ImageUploader = ({
+  errorMessage, fieldName, watch, register, control
+}: TProps) => {
+  /* TODO утил для валидации */
+  const { field: { name }, formState: { errors } } = useController({
+    name: fieldName,
+    control,
+    rules: {
+      required: true,
+      validate: (values: File[]) => values[0]?.type === 'image/jpeg'
+    }
+  })
 
   return (
     <Container>
       <Col1>
         <Title>Choose logo</Title>
-        <input type="file" accept=".jpg,.jpeg,.png" name="file" onChange={changeHandler} />
+        <input
+          name={name}
+          {...register(name)}
+          type="file"
+        />
+        {errors?.[name] && <span>{errorMessage}</span>}
       </Col1>
       <Image
         alt="default"
-        src={!isFilePicked ? 'https://upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg' : selectedFile}
+        src={
+          watch === undefined || watch.length === 0
+            ? defaultImage
+            : URL.createObjectURL(watch[0])
+        }
       />
     </Container>
   )

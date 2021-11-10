@@ -1,51 +1,43 @@
-import { Controller } from 'react-hook-form'
-
-import { ErrorMessage } from '@hookform/error-message'
+import { Control, useController } from 'react-hook-form'
 
 import './Input.scss'
 
 type TProps = {
-    fieldName: string
-    validationRules: RegExp
+    name: string
+    validationRules: any
     errorMessage: string
-    register: any
-    control: any
+    control: Control<any, any>
 }
-/* TODO убрать регистер, добавить rules={{ required: true }} */
+
 const mainCssClass = 'input'
 
 export function Input({
-  register, fieldName, control, validationRules, errorMessage
+  name, control, validationRules, errorMessage
 }: TProps) {
+  const { field: { value, onChange }, formState: { errors } } = useController({
+    name,
+    control,
+    rules: {
+      required: true,
+      pattern: {
+        value: validationRules,
+        message: errorMessage
+      }
+    }
+  })
+
   return (
-    <Controller
-      control={control}
-      name={fieldName}
-      render={({
-        field: {
-          onChange, onBlur, value, name, ref
-        },
-        fieldState: {
-          invalid, isTouched, isDirty, error
-        },
-        formState: { errors }
-      }) => (
-        <div className={mainCssClass}>
-          <label className={`${mainCssClass}__label`} htmlFor={fieldName}>{fieldName}</label>
-          <input
-            placeholder={fieldName}
-            className={`${mainCssClass}__input`}
-            {...register(fieldName, {
-              required: 'This is required.',
-              pattern: {
-                value: validationRules,
-                message: errorMessage
-              }
-            })}
-          />
-          <ErrorMessage errors={errors} name={fieldName} />
-        </div>
-      )}
-    />
+
+    <div className={mainCssClass}>
+      <label className={`${mainCssClass}__label`} htmlFor={name}>{name}</label>
+      <input
+        placeholder={name}
+        value={value}
+        className={`${mainCssClass}__input`}
+        onChange={onChange}
+      />
+      {errors?.[name] && <span>{errorMessage}</span>}
+    </div>
+
   )
 }

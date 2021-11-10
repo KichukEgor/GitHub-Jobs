@@ -11,11 +11,15 @@ type TProps = {
 const mainCssClass = 'form-select'
 
 export const FormSelect = ({
-  register, options, name, ...rest
+  register, options, name
 }: TProps) => (
   <div className={mainCssClass}>
     <label className={`${mainCssClass}__label`} htmlFor={name}>{name}</label>
-    <select className={`${mainCssClass}__select`} id={name} {...register(name)} {...rest}>
+    <select
+      className={`${mainCssClass}__select`}
+      id={name}
+      {...register(name)}
+    >
       {options.map((value:string) => (
         <option key={value} value={value}>{value}</option>
       ))}

@@ -5,7 +5,7 @@ import {
   setCurrentPage,
   setJobListError, setJobListLoading,
   setJobsCount,
-  setJobsList, setPageLimit,
+  setJobsList, setNewJob, setPageLimit,
   setSearchDescriptionParam,
   setSearchLocationParam,
   setSearchTypeParam

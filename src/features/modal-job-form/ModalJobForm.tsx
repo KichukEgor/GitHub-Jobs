@@ -2,13 +2,53 @@ import { FC, MouseEventHandler } from 'react'
 import { useForm } from 'react-hook-form'
 
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 import { Input } from '../../common/components/input/Input'
 import { FormSelect } from '../../common/components/form-select/FormSelect'
 import { Icon } from '../../common/components/icon/Icon'
 import ImageUploader from '../../common/components/imageUploader/ImageUploader'
-import * as S from './styled'
+import { FormTextAria } from '../../common/components/form-text-area/FormTextArea'
 
-import { inputData } from './inputData'
+import { inputParameters } from './inputParameters'
+import { setNewJob } from '../../store/jobs-list/actions'
+
+const ModalWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 100;
+  overflow: hidden;
+`
+
+const Form = styled.form`
+  position: absolute;
+  min-width: 50rem;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  align-items: center;
+  background-color: rgb(204, 199, 199);
+  z-index: 1000
+`
+
+const H1 = styled.h1`
+  text-align: center;
+  font-size: 3rem;
+`
+
+const SubmitInput = styled.input`
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: .6rem;
+  box-shadow: 0 0 .4rem rgb(6, 123, 245);
+`
 
 export const Cross = styled(Icon)`
   top: 2rem;
@@ -26,52 +66,65 @@ type TProps = {
     modalVisibility: MouseEventHandler<SVGSVGElement>
 }
 
-type TInputs = {
-    company: string;
-    title: string;
-    logo: string;
-    type: 'Full Time' | 'Part Time';
+export type TModalJobForm = {
+    company: 'company'
+    title: string
+    company_logo: string
+    type: 'Full Time' | 'Part Time'
 }
 
 const mainClassCss = 'modal-job-form'
 
 const ModalJobForm:FC<TProps> = ({ modalVisibility }) => {
   const {
-    register, control, handleSubmit, formState: { errors }
-  } = useForm({
-    mode: 'onBlur'
+    register, control, handleSubmit, formState: { isValid, errors }, watch
+  } = useForm<TModalJobForm>({
+    mode: 'onChange'
   })
 
-  const onSubmit = (data:any) => {
-    console.log(data)
+  console.log('watchFORM', watch())
+  /* TODO сделать через сагу */
+  /* TODO company_logo изменить на файл */
+  const dispatch = useDispatch()
+  // eslint-disable-next-line prefer-destructuring,no-return-assign
+  const onSubmit = (data: any) => {
+    // Array -> Object
+    // eslint-disable-next-line prefer-destructuring
+    data.company_logo = data.company_logo[0]
+    console.log(data.company_logo)/*
+    dispatch(setNewJob(data)) */
   }
-
   return (
-    <S.ModalWrapper>
-      <S.Form className={mainClassCss} onSubmit={handleSubmit(onSubmit)}>
+    <ModalWrapper>
+      <Form className={mainClassCss} onSubmit={handleSubmit(onSubmit)}>
         <Cross iconId="cross" size="3rem" onClick={modalVisibility} />
-        <S.H1>Create new Job</S.H1>
-        {inputData.map(({ name, validationRules, errorMessage }) => (
+        <H1>Create new Job</H1>
+        {inputParameters.map(({ name, validationRules, errorMessage }) => (
           <Input
             key={name}
-            register={register}
             control={control}
-            fieldName={name}
+            name={name}
             validationRules={validationRules}
             errorMessage={errorMessage}
           />
         ))}
-        <S.H3>Description</S.H3>
-        <S.TextArea />
+        <FormTextAria control={control} name="description" />
         <FormSelect
           name="type"
           options={['Full Time', 'Part Time']}
           register={register}
         />
-        <ImageUploader />
-        <S.SubmitInput type="submit" />
-      </S.Form>
-    </S.ModalWrapper>
+        {/* TODO доделать валидацию */}
+        <ImageUploader
+          register={register}
+          fieldName="company_logo"
+          control={control}
+          errorMessage="wrong type"
+          watch={watch('company_logo')}
+        />
+        <SubmitInput type="submit" disabled={!isValid} />
+      </Form>
+    </ModalWrapper>
   )
 }
 

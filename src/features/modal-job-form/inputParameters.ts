@@ -1,4 +1,4 @@
-export const inputData = [
+export const inputParameters = [
   {
     name: 'company',
     validationRules: /^[a-zA-Z0-9]+$/i,
@@ -10,7 +10,7 @@ export const inputData = [
     errorMessage: ''
   },
   {
-    name: 'region',
+    name: 'location',
     validationRules: /^[A-Za-z]/i,
     errorMessage: 'This input is letter only'
   }

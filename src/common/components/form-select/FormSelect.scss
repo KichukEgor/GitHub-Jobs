@@ -1,12 +1,13 @@
 @import 'src/common/styles/common';
 
 .form-select {
+  display: inline-block;
   padding: .8rem 0;
-  cursor: pointer;
 
   &__label {
     font-size: 1.8rem;
     font-weight: 500;
+    cursor: pointer;
   }
 
     &__select {

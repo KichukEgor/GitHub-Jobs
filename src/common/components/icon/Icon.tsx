@@ -1,14 +1,6 @@
 import { MouseEventHandler } from 'react'
 import icons from '../../../assets/icons.svg'
 
-/* TODO */
-type TIconId={
-    iconId: 'cross'
-    onClick?: MouseEventHandler<SVGSVGElement>
-    className?: string
-    size?: string
-}
-
 type TProps={
     iconId: 'cross'
     onClick?: MouseEventHandler<SVGSVGElement>
