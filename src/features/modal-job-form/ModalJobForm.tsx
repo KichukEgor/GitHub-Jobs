@@ -10,7 +10,8 @@ import ImageUploader from '../../common/components/imageUploader/ImageUploader'
 import { FormTextAria } from '../../common/components/form-text-area/FormTextArea'
 
 import { inputParameters } from './inputParameters'
-import { setNewJob } from '../../store/jobs-list/actions'
+import { setNewJob, TNewJobPayload } from '../../store/jobs-list/actions'
+import { validateUploadedImage } from '../../common/utils/jobFormValidationRules'
 
 const ModalWrapper = styled.div`
   width: 100%;
@@ -72,28 +73,22 @@ export type TModalJobForm = {
     company_logo: string
     type: 'Full Time' | 'Part Time'
 }
-
+const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg'
 const mainClassCss = 'modal-job-form'
 
 const ModalJobForm:FC<TProps> = ({ modalVisibility }) => {
   const {
-    register, control, handleSubmit, formState: { isValid, errors }, watch
+    register, control, handleSubmit, formState: { isValid }, watch
   } = useForm<TModalJobForm>({
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: { company_logo: defaultImage }
   })
 
-  console.log('watchFORM', watch())
-  /* TODO сделать через сагу */
-  /* TODO company_logo изменить на файл */
   const dispatch = useDispatch()
-  // eslint-disable-next-line prefer-destructuring,no-return-assign
-  const onSubmit = (data: any) => {
-    // Array -> Object
-    // eslint-disable-next-line prefer-destructuring
-    data.company_logo = data.company_logo[0]
-    console.log(data.company_logo)/*
-    dispatch(setNewJob(data)) */
+  const onSubmit = (data: TNewJobPayload) => {
+    dispatch(setNewJob(data))
   }
+
   return (
     <ModalWrapper>
       <Form className={mainClassCss} onSubmit={handleSubmit(onSubmit)}>
@@ -114,10 +109,13 @@ const ModalJobForm:FC<TProps> = ({ modalVisibility }) => {
           options={['Full Time', 'Part Time']}
           register={register}
         />
-        {/* TODO доделать валидацию */}
         <ImageUploader
-          register={register}
-          fieldName="company_logo"
+          rules={{
+            required: true,
+            validate: validateUploadedImage
+          }}
+          name="company_logo"
+          defaultImage={defaultImage}
           control={control}
           errorMessage="wrong type"
           watch={watch('company_logo')}
